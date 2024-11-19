@@ -33,6 +33,8 @@ import io.swagger.annotations.ApiModelProperty;
 	ContextPersonInfo.JSON_PROPERTY_USERNAME,
 	ContextPersonInfo.JSON_PROPERTY_NICKNAME,
 	ContextPersonInfo.JSON_PROPERTY_DISPLAY_NAME,
+	ContextPersonInfo.JSON_PROPERTY_DISPLAY_NAME_FOR_AGENT,
+	ContextPersonInfo.JSON_PROPERTY_DISPLAY_NAME_FOR_VISITOR,
 	ContextPersonInfo.JSON_PROPERTY_PERSON_TYPE,
 	ContextPersonInfo.JSON_PROPERTY_AUTHORIZATION_ROLE,
 	ContextPersonInfo.JSON_PROPERTY_EMAIL,
@@ -133,6 +135,14 @@ public class ContextPersonInfo {
 	public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
 	@JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
 	private String displayName;
+
+	public static final String JSON_PROPERTY_DISPLAY_NAME_FOR_AGENT = "displayNameForAgent";
+	@JsonProperty(JSON_PROPERTY_DISPLAY_NAME_FOR_AGENT)
+	private String displayNameForAgent;
+
+	public static final String JSON_PROPERTY_DISPLAY_NAME_FOR_VISITOR = "displayNameForVisitor";
+	@JsonProperty(JSON_PROPERTY_DISPLAY_NAME_FOR_VISITOR)
+	private String displayNameForVisitor;
 
 	public static final String JSON_PROPERTY_PERSON_TYPE = "personType";
 	@JsonProperty(JSON_PROPERTY_PERSON_TYPE)
@@ -422,17 +432,55 @@ public class ContextPersonInfo {
 	}
 
 	/**
-	 * Display name of the person. This is read only information, it will be set by the server anyway.
+	 * Display name of the person. This is read-only information that is set by the Collaboration Server.
 	 * 
 	 * @return displayName
 	 **/
-	@ApiModelProperty(value = "Display name of the person. This is read only information, it will be set by the server anyway.")
+	@ApiModelProperty(value = "Display name of the person. This is read-only information that is set by the Collaboration Server.")
 	public String getDisplayName() {
 		return displayName;
 	}
 
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+
+	public ContextPersonInfo displayNameForAgent(String displayNameForAgent) {
+		this.displayNameForAgent = displayNameForAgent;
+		return this;
+	}
+
+	/**
+	 * The person&#39;s display name as displayed to agents. This is read-only information set by the Collaboration Server.
+	 * 
+	 * @return displayNameForAgent
+	 **/
+	@ApiModelProperty(value = "The person's display name as displayed to agents. This is read-only information set by the Collaboration Server.")
+	public String getDisplayNameForAgent() {
+		return displayNameForAgent;
+	}
+
+	public void setDisplayNameForAgent(String displayNameForAgent) {
+		this.displayNameForAgent = displayNameForAgent;
+	}
+
+	public ContextPersonInfo displayNameForVisitor(String displayNameForVisitor) {
+		this.displayNameForVisitor = displayNameForVisitor;
+		return this;
+	}
+
+	/**
+	 * The person&#39;s display name as displayed to visitors. This is read-only information set by the Collaboration Server.
+	 * 
+	 * @return displayNameForVisitor
+	 **/
+	@ApiModelProperty(value = "The person's display name as displayed to visitors. This is read-only information set by the Collaboration Server.")
+	public String getDisplayNameForVisitor() {
+		return displayNameForVisitor;
+	}
+
+	public void setDisplayNameForVisitor(String displayNameForVisitor) {
+		this.displayNameForVisitor = displayNameForVisitor;
 	}
 
 	public ContextPersonInfo personType(EPersonType personType) {
@@ -787,6 +835,8 @@ public class ContextPersonInfo {
 				Objects.equals(this.username, contextPersonInfo.username) &&
 				Objects.equals(this.nickname, contextPersonInfo.nickname) &&
 				Objects.equals(this.displayName, contextPersonInfo.displayName) &&
+				Objects.equals(this.displayNameForAgent, contextPersonInfo.displayNameForAgent) &&
+				Objects.equals(this.displayNameForVisitor, contextPersonInfo.displayNameForVisitor) &&
 				Objects.equals(this.personType, contextPersonInfo.personType) &&
 				Objects.equals(this.authorizationRole, contextPersonInfo.authorizationRole) &&
 				Objects.equals(this.email, contextPersonInfo.email) &&
@@ -808,7 +858,7 @@ public class ContextPersonInfo {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, accountId, personSource, sourceId, sourceUrl, sourceData, firstName, lastName, username, nickname, displayName, personType, authorizationRole, email, phone, teamId, labels, note, noteLastEditedTimestamp, noteLastEditedPersonId, avatar, osName, osVersion, browserName, browserVersion, locale, city, country);
+		return Objects.hash($type, id, accountId, personSource, sourceId, sourceUrl, sourceData, firstName, lastName, username, nickname, displayName, displayNameForAgent, displayNameForVisitor, personType, authorizationRole, email, phone, teamId, labels, note, noteLastEditedTimestamp, noteLastEditedPersonId, avatar, osName, osVersion, browserName, browserVersion, locale, city, country);
 	}
 
 	@Override
@@ -827,6 +877,8 @@ public class ContextPersonInfo {
 		sb.append("    username: ").append(toIndentedString(username)).append("\n");
 		sb.append("    nickname: ").append(toIndentedString(nickname)).append("\n");
 		sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+		sb.append("    displayNameForAgent: ").append(toIndentedString(displayNameForAgent)).append("\n");
+		sb.append("    displayNameForVisitor: ").append(toIndentedString(displayNameForVisitor)).append("\n");
 		sb.append("    personType: ").append(toIndentedString(personType)).append("\n");
 		sb.append("    authorizationRole: ").append(toIndentedString(authorizationRole)).append("\n");
 		sb.append("    email: ").append(toIndentedString(email)).append("\n");

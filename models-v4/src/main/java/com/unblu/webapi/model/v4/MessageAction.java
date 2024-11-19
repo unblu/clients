@@ -120,11 +120,13 @@ public class MessageAction {
 	}
 
 	/**
-	 * Text displayed in the action button / link &lt;p&gt; Max length is 24 characters.
+	 * The text displayed on the action button, link, or reply message. &lt;ul&gt; &lt;li&gt;If the action type is
+	 * &#x60;EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE&#x60;, the maximum length is 64 characters, and the label is used as the reply
+	 * message.&lt;/li&gt; &lt;li&gt;For all other action types, the maximum length is 24 characters.&lt;/li&gt; &lt;/ul&gt;
 	 * 
 	 * @return label
 	 **/
-	@ApiModelProperty(value = "Text displayed in the action button / link <p> Max length is 24 characters.")
+	@ApiModelProperty(value = "The text displayed on the action button, link, or reply message. <ul> <li>If the action type is `EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE`, the maximum length is 64 characters, and the label is used as the reply message.</li> <li>For all other action types, the maximum length is 24 characters.</li> </ul>")
 	public String getLabel() {
 		return label;
 	}
@@ -139,13 +141,14 @@ public class MessageAction {
 	}
 
 	/**
-	 * The URL to open if the action type is a link or the reply message if the type is &#x60;EConversationMessageActionType.REPLY_MESSAGE&#x60; or a technical
-	 * value that will be part of the reply message if the action is chosen if the type is
-	 * &#x60;EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE&#x60;.
+	 * The content of this parameter depends on the action type: &lt;ul&gt; &lt;li&gt;If the action type is a link, the parameter contains the URL to open.
+	 * &lt;li&gt;If the action type is &#x60;EConversationMessageActionType.REPLY_MESSAGE&#x60;, the parameter contains the reply message. &lt;li&gt;If the action
+	 * type is &#x60;EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE&#x60;, the parameter contains a technical value sent along with the reply
+	 * message. The reply message itself is taken from the @link label parameter. &lt;/ul&gt;
 	 * 
 	 * @return value
 	 **/
-	@ApiModelProperty(value = "The URL to open if the action type is a link or the reply message if the type is `EConversationMessageActionType.REPLY_MESSAGE` or a technical value that will be part of the reply message if the action is chosen if the type is `EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE`.")
+	@ApiModelProperty(value = "The content of this parameter depends on the action type: <ul> <li>If the action type is a link, the parameter contains the URL to open. <li>If the action type is `EConversationMessageActionType.REPLY_MESSAGE`, the parameter contains the reply message. <li>If the action type is `EConversationMessageActionType.REPLY_MESSAGE_WITH_TECHNICAL_VALUE`, the parameter contains a technical value sent along with the reply message. The reply message itself is taken from the @link label parameter. </ul>")
 	public String getValue() {
 		return value;
 	}

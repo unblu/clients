@@ -85,6 +85,11 @@ public enum EOffboardingReason {
 	ASSISTANT_SYNCHRONIZATION("ASSISTANT_SYNCHRONIZATION"),
 
 	/**
+	 * CALL_NOT_ANSWERED: The incoming audio or video call was not answered in time for the conversation
+	 */
+	CALL_NOT_ANSWERED("CALL_NOT_ANSWERED"),
+
+	/**
 	 * OTHER: Some other unspecified reason
 	 */
 	OTHER("OTHER");
