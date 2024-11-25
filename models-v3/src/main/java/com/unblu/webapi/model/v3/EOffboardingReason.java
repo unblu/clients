@@ -85,6 +85,11 @@ public enum EOffboardingReason {
 	PUBLIC_DIALIN_ENDED("PUBLIC_DIALIN_ENDED"),
 
 	/**
+	 * CALL_NOT_ANSWERED: The incoming audio or video call was not answered in time for the conversation
+	 */
+	CALL_NOT_ANSWERED("CALL_NOT_ANSWERED"),
+
+	/**
 	 * OTHER: Some other unspecified reason
 	 */
 	OTHER("OTHER");
