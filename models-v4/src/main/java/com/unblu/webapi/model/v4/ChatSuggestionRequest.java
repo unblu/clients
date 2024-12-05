@@ -28,6 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 	ChatSuggestionRequest.JSON_PROPERTY_REQUESTING_PERSON,
 	ChatSuggestionRequest.JSON_PROPERTY_CONVERSATION,
 	ChatSuggestionRequest.JSON_PROPERTY_RELATED_MESSAGES,
+	ChatSuggestionRequest.JSON_PROPERTY_CUSTOM_PROMPT,
 	ChatSuggestionRequest.JSON_PROPERTY_CAPABILITIES,
 })
 @JsonAutoDetect(creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.NONE, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
@@ -92,6 +93,10 @@ public class ChatSuggestionRequest {
 	public static final String JSON_PROPERTY_RELATED_MESSAGES = "relatedMessages";
 	@JsonProperty(JSON_PROPERTY_RELATED_MESSAGES)
 	private List<MessageData> relatedMessages = null;
+
+	public static final String JSON_PROPERTY_CUSTOM_PROMPT = "customPrompt";
+	@JsonProperty(JSON_PROPERTY_CUSTOM_PROMPT)
+	private String customPrompt;
 
 	public static final String JSON_PROPERTY_CAPABILITIES = "capabilities";
 	@JsonProperty(JSON_PROPERTY_CAPABILITIES)
@@ -238,6 +243,25 @@ public class ChatSuggestionRequest {
 		this.relatedMessages = relatedMessages;
 	}
 
+	public ChatSuggestionRequest customPrompt(String customPrompt) {
+		this.customPrompt = customPrompt;
+		return this;
+	}
+
+	/**
+	 * If this field is present, the suggestion will based on this prompt and will only use the related messages as contextual information.
+	 * 
+	 * @return customPrompt
+	 **/
+	@ApiModelProperty(value = "If this field is present, the suggestion will based on this prompt and will only use the related messages as contextual information.")
+	public String getCustomPrompt() {
+		return customPrompt;
+	}
+
+	public void setCustomPrompt(String customPrompt) {
+		this.customPrompt = customPrompt;
+	}
+
 	public ChatSuggestionRequest capabilities(ChatSuggestionRequestCapabilities capabilities) {
 		this.capabilities = capabilities;
 		return this;
@@ -273,12 +297,13 @@ public class ChatSuggestionRequest {
 				Objects.equals(this.requestingPerson, chatSuggestionRequest.requestingPerson) &&
 				Objects.equals(this.conversation, chatSuggestionRequest.conversation) &&
 				Objects.equals(this.relatedMessages, chatSuggestionRequest.relatedMessages) &&
+				Objects.equals(this.customPrompt, chatSuggestionRequest.customPrompt) &&
 				Objects.equals(this.capabilities, chatSuggestionRequest.capabilities);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, accountId, serviceName, suggestionId, requestingPerson, conversation, relatedMessages, capabilities);
+		return Objects.hash($type, accountId, serviceName, suggestionId, requestingPerson, conversation, relatedMessages, customPrompt, capabilities);
 	}
 
 	@Override
@@ -292,6 +317,7 @@ public class ChatSuggestionRequest {
 		sb.append("    requestingPerson: ").append(toIndentedString(requestingPerson)).append("\n");
 		sb.append("    conversation: ").append(toIndentedString(conversation)).append("\n");
 		sb.append("    relatedMessages: ").append(toIndentedString(relatedMessages)).append("\n");
+		sb.append("    customPrompt: ").append(toIndentedString(customPrompt)).append("\n");
 		sb.append("    capabilities: ").append(toIndentedString(capabilities)).append("\n");
 		sb.append("}");
 		return sb.toString();

@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Unblu Web API
   description: Unblu Web API v4
-  version: 8.10.1
+  version: 8.11.1
 servers:
 - url: https://unblu.cloud/app/rest/v4
 security:
@@ -3576,7 +3576,13 @@ paths:
                       type: OPEN_IN_AGENT_DESK
                       url: '...'
                     - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_DESK
+                      url: '...'
+                    - $_type: ConversationLink
                       type: OPEN_IN_AGENT_SINGLE_VIEW
+                      url: '...'
+                    - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW
                       url: '...'
                     externalMessengerChannelId: null
                     sourceId: null
@@ -4507,7 +4513,13 @@ paths:
                       type: OPEN_IN_AGENT_DESK
                       url: '...'
                     - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_DESK
+                      url: '...'
+                    - $_type: ConversationLink
                       type: OPEN_IN_AGENT_SINGLE_VIEW
+                      url: '...'
+                    - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW
                       url: '...'
                     externalMessengerChannelId: null
                     sourceId: null
@@ -4622,7 +4634,13 @@ paths:
                       type: OPEN_IN_AGENT_DESK
                       url: '...'
                     - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_DESK
+                      url: '...'
+                    - $_type: ConversationLink
                       type: OPEN_IN_AGENT_SINGLE_VIEW
+                      url: '...'
+                    - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW
                       url: '...'
                     externalMessengerChannelId: null
                     sourceId: null
@@ -4740,7 +4758,13 @@ paths:
                       type: OPEN_IN_AGENT_DESK
                       url: '...'
                     - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_DESK
+                      url: '...'
+                    - $_type: ConversationLink
                       type: OPEN_IN_AGENT_SINGLE_VIEW
+                      url: '...'
+                    - $_type: ConversationLink
+                      type: OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW
                       url: '...'
                     externalMessengerChannelId: null
                     sourceId: null
@@ -10053,6 +10077,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PersonQuery'
+            examples:
+              request-body:
+                summary: request body
+                description: Create a search for Person by Person Source
+                value:
+                  $_type: PersonQuery
+                  searchFilters:
+                  - $_type: PersonSourcePersonSearchFilter
+                    field: PERSON_SOURCE
+                    operator:
+                      $_type: EqualsPersonSourceOperator
+                      type: EQUALS
+                      value: VIRTUAL
+                  orderBy:
+                  - $_type: PersonOrderBy
+                    field: USERNAME
+                    order: ASCENDING
+                  offset: null
+                  limit: 100
         required: true
       responses:
         "200":
@@ -16756,6 +16799,9 @@ components:
           description: The messages for which the person is requesting a suggestion
           items:
             $ref: '#/components/schemas/MessageData'
+        customPrompt:
+          type: string
+          description: "If this field is present, the suggestion will based on this prompt and will only use the related messages as contextual information."
         capabilities:
           $ref: '#/components/schemas/ChatSuggestionRequestCapabilities'
     ChatSuggestionRequestCapabilities:
@@ -21610,7 +21656,9 @@ components:
       - ACCEPT_IN_AGENT_SINGLE_VIEW
       - ACCEPT_IN_VISITOR_DESK
       - OPEN_IN_AGENT_DESK
+      - OPEN_AS_GHOST_IN_AGENT_DESK
       - OPEN_IN_AGENT_SINGLE_VIEW
+      - OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW
       - OPEN_IN_VISITOR_DESK
       - OPEN_PUBLIC_LINK
       x-enum-descriptions:
@@ -21618,7 +21666,9 @@ components:
       - "ACCEPT_IN_AGENT_SINGLE_VIEW: Link that accepts the invitation and display the conversation in a single view <p> The single view only displays the conversation without any navigation and other agent desk features and can be used for integration into third party applications."
       - "ACCEPT_IN_VISITOR_DESK: Link that accepts the invitation and display the conversation in a visitor desk"
       - "OPEN_IN_AGENT_DESK: Link to open an existing conversation in the agent desk to display the conversation"
-      - "OPEN_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view <p> The single view only displays the conversation without any navigation and other agent desk features and can be used for integration into third party applications."
+      - "OPEN_AS_GHOST_IN_AGENT_DESK: Link to open an existing conversation as a ghost in the agent desk to display the conversation"
+      - "OPEN_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view <p> The single view only displays the conversation, with no navigation or other Agent Desk features. It can be used for integration into third-party applications."
+      - "OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view as a ghost <p> The single view only displays the conversation, with no navigation or other Agent Desk features. It can be used for integration into third-party applications."
       - "OPEN_IN_VISITOR_DESK: Link to open an existing conversation in a visitor desk"
       - "OPEN_PUBLIC_LINK: Link to open an existing conversation. It will first go to the visitor desk, it it can be detected, that the user is an agent, it will redirect to the single view for the agent."
     EConversationMessageActionType:

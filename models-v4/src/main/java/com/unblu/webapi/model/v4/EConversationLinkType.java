@@ -31,10 +31,21 @@ public enum EConversationLinkType {
 	OPEN_IN_AGENT_DESK("OPEN_IN_AGENT_DESK"),
 
 	/**
-	 * OPEN_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view &lt;p&gt; The single view only displays the conversation without any
-	 * navigation and other agent desk features and can be used for integration into third party applications.
+	 * OPEN_AS_GHOST_IN_AGENT_DESK: Link to open an existing conversation as a ghost in the agent desk to display the conversation
+	 */
+	OPEN_AS_GHOST_IN_AGENT_DESK("OPEN_AS_GHOST_IN_AGENT_DESK"),
+
+	/**
+	 * OPEN_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view &lt;p&gt; The single view only displays the conversation, with no
+	 * navigation or other Agent Desk features. It can be used for integration into third-party applications.
 	 */
 	OPEN_IN_AGENT_SINGLE_VIEW("OPEN_IN_AGENT_SINGLE_VIEW"),
+
+	/**
+	 * OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW: Link to open an existing conversation in a single view as a ghost &lt;p&gt; The single view only displays the
+	 * conversation, with no navigation or other Agent Desk features. It can be used for integration into third-party applications.
+	 */
+	OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW("OPEN_AS_GHOST_IN_AGENT_SINGLE_VIEW"),
 
 	/**
 	 * OPEN_IN_VISITOR_DESK: Link to open an existing conversation in a visitor desk
