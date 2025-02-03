@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Unblu Web API
   description: Unblu Web API v3
-  version: 7.53.4
+  version: 7.54.1
 servers:
 - url: https://unblu.cloud/app/rest/v3
 security:
@@ -17269,7 +17269,7 @@ components:
           description: Flag indicating whether the participant is hidden
         conversationStarred:
           type: boolean
-          description: Flag indictaing whether the participant has starred this conversation
+          description: Flag indicating whether the participant has starred this conversation
         conversationId:
           type: string
           description: The ID of the conversation the participation belongs to

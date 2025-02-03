@@ -365,11 +365,11 @@ public class ConversationParticipationData {
 	}
 
 	/**
-	 * Flag indictaing whether the participant has starred this conversation
+	 * Flag indicating whether the participant has starred this conversation
 	 * 
 	 * @return conversationStarred
 	 **/
-	@ApiModelProperty(value = "Flag indictaing whether the participant has starred this conversation")
+	@ApiModelProperty(value = "Flag indicating whether the participant has starred this conversation")
 	public Boolean isConversationStarred() {
 		return conversationStarred;
 	}
