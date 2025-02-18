@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
 	ReplyPostMessageData.JSON_PROPERTY_$_TYPE,
 	ReplyPostMessageData.JSON_PROPERTY_TYPE,
 	ReplyPostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	ReplyPostMessageData.JSON_PROPERTY_LOCALE,
 	ReplyPostMessageData.JSON_PROPERTY_QUESTION_MESSAGE_ID,
 	ReplyPostMessageData.JSON_PROPERTY_VALUE,
 })
@@ -71,6 +72,10 @@ public class ReplyPostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_QUESTION_MESSAGE_ID = "questionMessageId";
 	@JsonProperty(JSON_PROPERTY_QUESTION_MESSAGE_ID)
@@ -140,6 +145,27 @@ public class ReplyPostMessageData implements PostMessageData {
 		this.fallbackText = fallbackText;
 	}
 
+	public ReplyPostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public ReplyPostMessageData questionMessageId(String questionMessageId) {
 		this.questionMessageId = questionMessageId;
 		return this;
@@ -190,13 +216,14 @@ public class ReplyPostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, replyPostMessageData.$type) &&
 				Objects.equals(this.type, replyPostMessageData.type) &&
 				Objects.equals(this.fallbackText, replyPostMessageData.fallbackText) &&
+				Objects.equals(this.locale, replyPostMessageData.locale) &&
 				Objects.equals(this.questionMessageId, replyPostMessageData.questionMessageId) &&
 				Objects.equals(this.value, replyPostMessageData.value);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, questionMessageId, value);
+		return Objects.hash($type, type, fallbackText, locale, questionMessageId, value);
 	}
 
 	@Override
@@ -206,6 +233,7 @@ public class ReplyPostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    questionMessageId: ").append(toIndentedString(questionMessageId)).append("\n");
 		sb.append("    value: ").append(toIndentedString(value)).append("\n");
 		sb.append("}");

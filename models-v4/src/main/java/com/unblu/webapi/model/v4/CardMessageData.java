@@ -40,6 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
 	CardMessageData.JSON_PROPERTY_REPLY_TO_MESSAGE_ID,
 	CardMessageData.JSON_PROPERTY_EXTERNAL_MESSAGE_ID,
 	CardMessageData.JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID,
+	CardMessageData.JSON_PROPERTY_LOCALE,
 	CardMessageData.JSON_PROPERTY_IMAGE_URL,
 	CardMessageData.JSON_PROPERTY_IMAGE_ALT_TEXT,
 	CardMessageData.JSON_PROPERTY_TITLE,
@@ -158,6 +159,10 @@ public class CardMessageData implements MessageData {
 	public static final String JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID = "replyToExternalMessageId";
 	@JsonProperty(JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID)
 	private String replyToExternalMessageId;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
 	@JsonProperty(JSON_PROPERTY_IMAGE_URL)
@@ -560,6 +565,26 @@ public class CardMessageData implements MessageData {
 		this.replyToExternalMessageId = replyToExternalMessageId;
 	}
 
+	public CardMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it&#39;s in
+	 * the conversation language.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public CardMessageData imageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 		return this;
@@ -737,6 +762,7 @@ public class CardMessageData implements MessageData {
 				Objects.equals(this.replyToMessageId, cardMessageData.replyToMessageId) &&
 				Objects.equals(this.externalMessageId, cardMessageData.externalMessageId) &&
 				Objects.equals(this.replyToExternalMessageId, cardMessageData.replyToExternalMessageId) &&
+				Objects.equals(this.locale, cardMessageData.locale) &&
 				Objects.equals(this.imageUrl, cardMessageData.imageUrl) &&
 				Objects.equals(this.imageAltText, cardMessageData.imageAltText) &&
 				Objects.equals(this.title, cardMessageData.title) &&
@@ -748,7 +774,7 @@ public class CardMessageData implements MessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, imageUrl, imageAltText, title, body, bodyTextType, actions, quickReplies);
+		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, locale, imageUrl, imageAltText, title, body, bodyTextType, actions, quickReplies);
 	}
 
 	@Override
@@ -774,6 +800,7 @@ public class CardMessageData implements MessageData {
 		sb.append("    replyToMessageId: ").append(toIndentedString(replyToMessageId)).append("\n");
 		sb.append("    externalMessageId: ").append(toIndentedString(externalMessageId)).append("\n");
 		sb.append("    replyToExternalMessageId: ").append(toIndentedString(replyToExternalMessageId)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
 		sb.append("    imageAltText: ").append(toIndentedString(imageAltText)).append("\n");
 		sb.append("    title: ").append(toIndentedString(title)).append("\n");

@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 	ListPostMessageData.JSON_PROPERTY_$_TYPE,
 	ListPostMessageData.JSON_PROPERTY_TYPE,
 	ListPostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	ListPostMessageData.JSON_PROPERTY_LOCALE,
 	ListPostMessageData.JSON_PROPERTY_HEADER,
 	ListPostMessageData.JSON_PROPERTY_ITEMS,
 	ListPostMessageData.JSON_PROPERTY_ACTIONS,
@@ -75,6 +76,10 @@ public class ListPostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_HEADER = "header";
 	@JsonProperty(JSON_PROPERTY_HEADER)
@@ -150,6 +155,27 @@ public class ListPostMessageData implements PostMessageData {
 
 	public void setFallbackText(String fallbackText) {
 		this.fallbackText = fallbackText;
+	}
+
+	public ListPostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public ListPostMessageData header(MessageHeader header) {
@@ -264,6 +290,7 @@ public class ListPostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, listPostMessageData.$type) &&
 				Objects.equals(this.type, listPostMessageData.type) &&
 				Objects.equals(this.fallbackText, listPostMessageData.fallbackText) &&
+				Objects.equals(this.locale, listPostMessageData.locale) &&
 				Objects.equals(this.header, listPostMessageData.header) &&
 				Objects.equals(this.items, listPostMessageData.items) &&
 				Objects.equals(this.actions, listPostMessageData.actions) &&
@@ -272,7 +299,7 @@ public class ListPostMessageData implements PostMessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, header, items, actions, quickReplies);
+		return Objects.hash($type, type, fallbackText, locale, header, items, actions, quickReplies);
 	}
 
 	@Override
@@ -282,6 +309,7 @@ public class ListPostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    header: ").append(toIndentedString(header)).append("\n");
 		sb.append("    items: ").append(toIndentedString(items)).append("\n");
 		sb.append("    actions: ").append(toIndentedString(actions)).append("\n");

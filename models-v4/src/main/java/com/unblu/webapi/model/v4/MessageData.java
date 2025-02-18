@@ -129,4 +129,10 @@ public interface MessageData {
 
 	MessageData replyToExternalMessageId(String replyToExternalMessageId);
 
+	void setLocale(String locale);
+
+	String getLocale();
+
+	MessageData locale(String locale);
+
 }

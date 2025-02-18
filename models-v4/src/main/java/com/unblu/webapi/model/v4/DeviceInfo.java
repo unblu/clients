@@ -40,6 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
 	DeviceInfo.JSON_PROPERTY_PUSH_KIT_TOKEN,
 	DeviceInfo.JSON_PROPERTY_MOBILE_PUSH_NOTIFICATION_VERSION,
 	DeviceInfo.JSON_PROPERTY_OWNER_PERSON_ID,
+	DeviceInfo.JSON_PROPERTY_LAST_SUCCESSFUL2_F_A_TIMESTAMP,
 })
 @JsonAutoDetect(creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.NONE, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
 public class DeviceInfo {
@@ -155,6 +156,10 @@ public class DeviceInfo {
 	public static final String JSON_PROPERTY_OWNER_PERSON_ID = "ownerPersonId";
 	@JsonProperty(JSON_PROPERTY_OWNER_PERSON_ID)
 	private String ownerPersonId;
+
+	public static final String JSON_PROPERTY_LAST_SUCCESSFUL2_F_A_TIMESTAMP = "lastSuccessful2FATimestamp";
+	@JsonProperty(JSON_PROPERTY_LAST_SUCCESSFUL2_F_A_TIMESTAMP)
+	private Long lastSuccessful2FATimestamp;
 
 	public DeviceInfo $type(TypeEnum $type) {
 		this.$type = $type;
@@ -540,6 +545,25 @@ public class DeviceInfo {
 		this.ownerPersonId = ownerPersonId;
 	}
 
+	public DeviceInfo lastSuccessful2FATimestamp(Long lastSuccessful2FATimestamp) {
+		this.lastSuccessful2FATimestamp = lastSuccessful2FATimestamp;
+		return this;
+	}
+
+	/**
+	 * Timestamp for the last successful two-factor authentication (2FA). Used to check if the current 2FA is still valid.
+	 * 
+	 * @return lastSuccessful2FATimestamp
+	 **/
+	@ApiModelProperty(value = "Timestamp for the last successful two-factor authentication (2FA). Used to check if the current 2FA is still valid.")
+	public Long getLastSuccessful2FATimestamp() {
+		return lastSuccessful2FATimestamp;
+	}
+
+	public void setLastSuccessful2FATimestamp(Long lastSuccessful2FATimestamp) {
+		this.lastSuccessful2FATimestamp = lastSuccessful2FATimestamp;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -568,12 +592,13 @@ public class DeviceInfo {
 				Objects.equals(this.pushToken, deviceInfo.pushToken) &&
 				Objects.equals(this.pushKitToken, deviceInfo.pushKitToken) &&
 				Objects.equals(this.mobilePushNotificationVersion, deviceInfo.mobilePushNotificationVersion) &&
-				Objects.equals(this.ownerPersonId, deviceInfo.ownerPersonId);
+				Objects.equals(this.ownerPersonId, deviceInfo.ownerPersonId) &&
+				Objects.equals(this.lastSuccessful2FATimestamp, deviceInfo.lastSuccessful2FATimestamp);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, creationTimestamp, modificationTimestamp, accountId, osName, osVersion, browserName, browserVersion, userAgent, screenWidth, screenHeight, screenPixelRatio, type, identifier, identifierSource, pushToken, pushKitToken, mobilePushNotificationVersion, ownerPersonId);
+		return Objects.hash($type, id, creationTimestamp, modificationTimestamp, accountId, osName, osVersion, browserName, browserVersion, userAgent, screenWidth, screenHeight, screenPixelRatio, type, identifier, identifierSource, pushToken, pushKitToken, mobilePushNotificationVersion, ownerPersonId, lastSuccessful2FATimestamp);
 	}
 
 	@Override
@@ -600,6 +625,7 @@ public class DeviceInfo {
 		sb.append("    pushKitToken: ").append(toIndentedString(pushKitToken)).append("\n");
 		sb.append("    mobilePushNotificationVersion: ").append(toIndentedString(mobilePushNotificationVersion)).append("\n");
 		sb.append("    ownerPersonId: ").append(toIndentedString(ownerPersonId)).append("\n");
+		sb.append("    lastSuccessful2FATimestamp: ").append(toIndentedString(lastSuccessful2FATimestamp)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

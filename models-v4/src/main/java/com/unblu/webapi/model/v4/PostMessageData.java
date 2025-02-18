@@ -28,4 +28,10 @@ public interface PostMessageData {
 
 	PostMessageData fallbackText(String fallbackText);
 
+	void setLocale(String locale);
+
+	String getLocale();
+
+	PostMessageData locale(String locale);
+
 }

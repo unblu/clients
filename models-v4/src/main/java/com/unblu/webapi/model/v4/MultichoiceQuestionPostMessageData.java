@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_$_TYPE,
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_TYPE,
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	MultichoiceQuestionPostMessageData.JSON_PROPERTY_LOCALE,
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_TEXT,
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_TEXT_TYPE,
 	MultichoiceQuestionPostMessageData.JSON_PROPERTY_OPTIONS,
@@ -74,6 +75,10 @@ public class MultichoiceQuestionPostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_TEXT = "text";
 	@JsonProperty(JSON_PROPERTY_TEXT)
@@ -145,6 +150,27 @@ public class MultichoiceQuestionPostMessageData implements PostMessageData {
 
 	public void setFallbackText(String fallbackText) {
 		this.fallbackText = fallbackText;
+	}
+
+	public MultichoiceQuestionPostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public MultichoiceQuestionPostMessageData text(String text) {
@@ -224,6 +250,7 @@ public class MultichoiceQuestionPostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, multichoiceQuestionPostMessageData.$type) &&
 				Objects.equals(this.type, multichoiceQuestionPostMessageData.type) &&
 				Objects.equals(this.fallbackText, multichoiceQuestionPostMessageData.fallbackText) &&
+				Objects.equals(this.locale, multichoiceQuestionPostMessageData.locale) &&
 				Objects.equals(this.text, multichoiceQuestionPostMessageData.text) &&
 				Objects.equals(this.textType, multichoiceQuestionPostMessageData.textType) &&
 				Objects.equals(this.options, multichoiceQuestionPostMessageData.options);
@@ -231,7 +258,7 @@ public class MultichoiceQuestionPostMessageData implements PostMessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, text, textType, options);
+		return Objects.hash($type, type, fallbackText, locale, text, textType, options);
 	}
 
 	@Override
@@ -241,6 +268,7 @@ public class MultichoiceQuestionPostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    text: ").append(toIndentedString(text)).append("\n");
 		sb.append("    textType: ").append(toIndentedString(textType)).append("\n");
 		sb.append("    options: ").append(toIndentedString(options)).append("\n");

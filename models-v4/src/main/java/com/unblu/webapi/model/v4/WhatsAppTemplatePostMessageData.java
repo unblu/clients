@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 	WhatsAppTemplatePostMessageData.JSON_PROPERTY_$_TYPE,
 	WhatsAppTemplatePostMessageData.JSON_PROPERTY_TYPE,
 	WhatsAppTemplatePostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	WhatsAppTemplatePostMessageData.JSON_PROPERTY_LOCALE,
 	WhatsAppTemplatePostMessageData.JSON_PROPERTY_TEMPLATE_ID,
 	WhatsAppTemplatePostMessageData.JSON_PROPERTY_COMPONENTS,
 })
@@ -73,6 +74,10 @@ public class WhatsAppTemplatePostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
 	@JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
@@ -142,6 +147,27 @@ public class WhatsAppTemplatePostMessageData implements PostMessageData {
 		this.fallbackText = fallbackText;
 	}
 
+	public WhatsAppTemplatePostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public WhatsAppTemplatePostMessageData templateId(String templateId) {
 		this.templateId = templateId;
 		return this;
@@ -200,13 +226,14 @@ public class WhatsAppTemplatePostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, whatsAppTemplatePostMessageData.$type) &&
 				Objects.equals(this.type, whatsAppTemplatePostMessageData.type) &&
 				Objects.equals(this.fallbackText, whatsAppTemplatePostMessageData.fallbackText) &&
+				Objects.equals(this.locale, whatsAppTemplatePostMessageData.locale) &&
 				Objects.equals(this.templateId, whatsAppTemplatePostMessageData.templateId) &&
 				Objects.equals(this.components, whatsAppTemplatePostMessageData.components);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, templateId, components);
+		return Objects.hash($type, type, fallbackText, locale, templateId, components);
 	}
 
 	@Override
@@ -216,6 +243,7 @@ public class WhatsAppTemplatePostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
 		sb.append("    components: ").append(toIndentedString(components)).append("\n");
 		sb.append("}");

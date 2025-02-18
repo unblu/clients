@@ -402,7 +402,7 @@ public class AuthenticatorApi {
 	}
 
 	/**
-	 * logout Call this to logout (clear internal session and session cookie on response)&lt;br&gt;
+	 * logout Call this to log out (clear internal session and session cookie on response)&lt;br&gt;
 	 * 
 	 * @param authenticatorLogoutBody (required)
 	 * @throws ApiException if fails to make API call
@@ -413,7 +413,7 @@ public class AuthenticatorApi {
 	}
 
 	/**
-	 * logout Call this to logout (clear internal session and session cookie on response)&lt;br&gt;
+	 * logout Call this to log out (clear internal session and session cookie on response)&lt;br&gt;
 	 * 
 	 * @param authenticatorLogoutBody (required)
 	 * @throws ApiException if fails to make API call

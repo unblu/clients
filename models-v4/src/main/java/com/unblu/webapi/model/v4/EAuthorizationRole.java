@@ -40,6 +40,11 @@ public enum EAuthorizationRole {
 	WEBUSER("WEBUSER"),
 
 	/**
+	 * PARTIALLY_AUTHENTICATED: Partially authenticated. For users who have logged in but haven&#39;t completed 2FA.
+	 */
+	PARTIALLY_AUTHENTICATED("PARTIALLY_AUTHENTICATED"),
+
+	/**
 	 * ANONYMOUS_USER: Anonymous role. For internal representation of unknown users
 	 */
 	ANONYMOUS_USER("ANONYMOUS_USER");

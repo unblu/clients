@@ -40,6 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
 	ApprovalRequestMessageData.JSON_PROPERTY_REPLY_TO_MESSAGE_ID,
 	ApprovalRequestMessageData.JSON_PROPERTY_EXTERNAL_MESSAGE_ID,
 	ApprovalRequestMessageData.JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID,
+	ApprovalRequestMessageData.JSON_PROPERTY_LOCALE,
 	ApprovalRequestMessageData.JSON_PROPERTY_TEXT,
 	ApprovalRequestMessageData.JSON_PROPERTY_TEXT_TYPE,
 	ApprovalRequestMessageData.JSON_PROPERTY_OPTIONS,
@@ -155,6 +156,10 @@ public class ApprovalRequestMessageData implements MessageData {
 	public static final String JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID = "replyToExternalMessageId";
 	@JsonProperty(JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID)
 	private String replyToExternalMessageId;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_TEXT = "text";
 	@JsonProperty(JSON_PROPERTY_TEXT)
@@ -545,6 +550,26 @@ public class ApprovalRequestMessageData implements MessageData {
 		this.replyToExternalMessageId = replyToExternalMessageId;
 	}
 
+	public ApprovalRequestMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it&#39;s in
+	 * the conversation language.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public ApprovalRequestMessageData text(String text) {
 		this.text = text;
 		return this;
@@ -657,6 +682,7 @@ public class ApprovalRequestMessageData implements MessageData {
 				Objects.equals(this.replyToMessageId, approvalRequestMessageData.replyToMessageId) &&
 				Objects.equals(this.externalMessageId, approvalRequestMessageData.externalMessageId) &&
 				Objects.equals(this.replyToExternalMessageId, approvalRequestMessageData.replyToExternalMessageId) &&
+				Objects.equals(this.locale, approvalRequestMessageData.locale) &&
 				Objects.equals(this.text, approvalRequestMessageData.text) &&
 				Objects.equals(this.textType, approvalRequestMessageData.textType) &&
 				Objects.equals(this.options, approvalRequestMessageData.options) &&
@@ -665,7 +691,7 @@ public class ApprovalRequestMessageData implements MessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, text, textType, options, answerStatus);
+		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, locale, text, textType, options, answerStatus);
 	}
 
 	@Override
@@ -691,6 +717,7 @@ public class ApprovalRequestMessageData implements MessageData {
 		sb.append("    replyToMessageId: ").append(toIndentedString(replyToMessageId)).append("\n");
 		sb.append("    externalMessageId: ").append(toIndentedString(externalMessageId)).append("\n");
 		sb.append("    replyToExternalMessageId: ").append(toIndentedString(replyToExternalMessageId)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    text: ").append(toIndentedString(text)).append("\n");
 		sb.append("    textType: ").append(toIndentedString(textType)).append("\n");
 		sb.append("    options: ").append(toIndentedString(options)).append("\n");

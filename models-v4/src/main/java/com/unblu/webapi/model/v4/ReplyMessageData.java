@@ -40,6 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
 	ReplyMessageData.JSON_PROPERTY_REPLY_TO_MESSAGE_ID,
 	ReplyMessageData.JSON_PROPERTY_EXTERNAL_MESSAGE_ID,
 	ReplyMessageData.JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID,
+	ReplyMessageData.JSON_PROPERTY_LOCALE,
 	ReplyMessageData.JSON_PROPERTY_QUESTION_MESSAGE_ID,
 	ReplyMessageData.JSON_PROPERTY_VALUE,
 })
@@ -153,6 +154,10 @@ public class ReplyMessageData implements MessageData {
 	public static final String JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID = "replyToExternalMessageId";
 	@JsonProperty(JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID)
 	private String replyToExternalMessageId;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_QUESTION_MESSAGE_ID = "questionMessageId";
 	@JsonProperty(JSON_PROPERTY_QUESTION_MESSAGE_ID)
@@ -535,6 +540,26 @@ public class ReplyMessageData implements MessageData {
 		this.replyToExternalMessageId = replyToExternalMessageId;
 	}
 
+	public ReplyMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it&#39;s in
+	 * the conversation language.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public ReplyMessageData questionMessageId(String questionMessageId) {
 		this.questionMessageId = questionMessageId;
 		return this;
@@ -601,13 +626,14 @@ public class ReplyMessageData implements MessageData {
 				Objects.equals(this.replyToMessageId, replyMessageData.replyToMessageId) &&
 				Objects.equals(this.externalMessageId, replyMessageData.externalMessageId) &&
 				Objects.equals(this.replyToExternalMessageId, replyMessageData.replyToExternalMessageId) &&
+				Objects.equals(this.locale, replyMessageData.locale) &&
 				Objects.equals(this.questionMessageId, replyMessageData.questionMessageId) &&
 				Objects.equals(this.value, replyMessageData.value);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, questionMessageId, value);
+		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, locale, questionMessageId, value);
 	}
 
 	@Override
@@ -633,6 +659,7 @@ public class ReplyMessageData implements MessageData {
 		sb.append("    replyToMessageId: ").append(toIndentedString(replyToMessageId)).append("\n");
 		sb.append("    externalMessageId: ").append(toIndentedString(externalMessageId)).append("\n");
 		sb.append("    replyToExternalMessageId: ").append(toIndentedString(replyToExternalMessageId)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    questionMessageId: ").append(toIndentedString(questionMessageId)).append("\n");
 		sb.append("    value: ").append(toIndentedString(value)).append("\n");
 		sb.append("}");

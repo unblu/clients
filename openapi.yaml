@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Unblu Web API
   description: Unblu Web API v4
-  version: 8.13.1
+  version: 8.14.4
 servers:
 - url: https://unblu.cloud/app/rest/v4
 security:
@@ -28,6 +28,8 @@ tags:
   description: "Service to manage canned responses.<br> The canned responses a user can edit and the ones they can use in chats can differ. The ones they can edit depend on their role. The ones they can use in a chat depend on their role as well as the team setup. Refer to the following policies for the list of canned responses available for chat: <ul> <li>All canned responses of the own user.</li> <li>All canned responses of the team cascade (the user's team and all of its parent teams)</li> <li>All canned responses of the subteams if role is: SUPERVISOR or higher.</li> <li>All canned responses of all teams if role is: ADMIN or higher.</li> <li>All canned responses of the users account.</li> </ul> Compare that to list of policies for creating, editing, and deleting canned responses: <ul> <li>All canned responses of the own user.</li> <li>All canned responses of the subteams if role is: SUPERVISOR or higher.</li> <li>All canned responses of all teams if role is: ADMIN or higher.</li> <li>All canned responses of the users account if role is: ADMIN or higher.</li> <li></li> </ul>"
 - name: CannedResponsesUsage
   description: Service for Canned Response Usage
+- name: CollaborationLayerLogs
+  description: Service to manage all kind of collaboration layer log entries.
 - name: ConversationHistory
   description: Service to get the history of conversations
 - name: ConversationTemplates
@@ -1212,7 +1214,7 @@ paths:
       tags:
       - Authenticator
       summary: logout
-      description: Call this to logout (clear internal session and session cookie on response)<br>
+      description: Call this to log out (clear internal session and session cookie on response)<br>
       operationId: authenticatorLogout
       requestBody:
         content:
@@ -2168,6 +2170,7 @@ paths:
                     $_type: CardPostMessageData
                     type: CARD
                     fallbackText: This is the plain body text
+                    locale: null
                     imageUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURfolAT39/6qSgZ2hko6xpLeDbrzfdCUAAAFvSURBVHja7c8BDYBADASwBQfvAAkkSOCRgH8rmLgwAq2D1lYZy+hVIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLvjxx7xuyOjI8QERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERedB5hXRH1koRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH5S2Sm3Pdeq7vUBkC2AAAAAElFTkSuQmCC"
                     imageAltText: test image
                     title: Title
@@ -2210,6 +2213,7 @@ paths:
                     $_type: CardPostMessageData
                     type: CARD
                     fallbackText: This is the plain body text
+                    locale: null
                     imageUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURfolAT39/6qSgZ2hko6xpLeDbrzfdCUAAAFvSURBVHja7c8BDYBADASwBQfvAAkkSOCRgH8rmLgwAq2D1lYZy+hVIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLvjxx7xuyOjI8QERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERedB5hXRH1koRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH5S2Sm3Pdeq7vUBkC2AAAAAElFTkSuQmCC"
                     imageAltText: test image
                     title: Title
@@ -2240,6 +2244,7 @@ paths:
                     $_type: FilePostMessageData
                     type: FILE
                     fallbackText: Picture file testImage.png
+                    locale: null
                     fileName: testImage.png
                     caption: See file below
                     captionType: MARKDOWN
@@ -2264,6 +2269,7 @@ paths:
                     $_type: ListPostMessageData
                     type: LIST
                     fallbackText: This is the plain body text
+                    locale: null
                     header:
                       $_type: MessageHeader
                       imageUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURfolAT39/6qSgZ2hko6xpLeDbrzfdCUAAAFvSURBVHja7c8BDYBADASwBQfvAAkkSOCRgH8rmLgwAq2D1lYZy+hVIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLvjxx7xuyOjI8QERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERedB5hXRH1koRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH5S2Sm3Pdeq7vUBkC2AAAAAElFTkSuQmCC"
@@ -2338,6 +2344,7 @@ paths:
                     $_type: MultichoiceQuestionPostMessageData
                     type: MULTICHOICE_QUESTION
                     fallbackText: Choose one of the options
+                    locale: null
                     text: Choose one of the options
                     textType: MARKDOWN
                     options:
@@ -2383,6 +2390,7 @@ paths:
                     $_type: RatingQuestionPostMessageData
                     type: RATING_QUESTION
                     fallbackText: Rate question
+                    locale: null
                     text: Rate question
                     textType: MARKDOWN
                     options:
@@ -2410,6 +2418,7 @@ paths:
                     $_type: TextPostMessageData
                     type: TEXT
                     fallbackText: "Hello, how can I help?"
+                    locale: null
                     text: "Hello, I am a bot. How can I help you?"
                     textType: MARKDOWN
                     quickReplies:
@@ -2432,6 +2441,7 @@ paths:
                     $_type: TextQuestionPostMessageData
                     type: TEXT_QUESTION
                     fallbackText: question text
+                    locale: null
                     text: question text
                     textType: MARKDOWN
                     questionType: SHORT_TEXT
@@ -2914,6 +2924,181 @@ paths:
       x-required-entry-path: INTERNAL
       x-required-role:
       - REGISTERED_USER
+  /collaborationlayerlogs/search:
+    post:
+      tags:
+      - CollaborationLayerLogs
+      summary: search
+      description: Search for CollaborationLayerLogEntry in the current account<br>
+      operationId: collaborationLayerLogsSearch
+      parameters:
+      - name: expand
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpandFields'
+        style: form
+        explode: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollaborationLayerLogEntryQuery'
+            examples:
+              request-body:
+                summary: request body
+                description: Search for Collaboration Layer Log Entry with all possible filters
+                value:
+                  $_type: CollaborationLayerLogEntryQuery
+                  searchFilters:
+                  - $_type: StartingTimestampCollaborationLayerLogEntrySearchFilter
+                    field: STARTING_TIMESTAMP
+                    operator:
+                      $_type: InRangeTimestampOperator
+                      type: IN_RANGE
+                      minimum: 1704067100
+                      maximum: 1704067300
+                  - $_type: StopTimestampCollaborationLayerLogEntrySearchFilter
+                    field: STOP_TIMESTAMP
+                    operator:
+                      $_type: InRangeTimestampOperator
+                      type: IN_RANGE
+                      minimum: 1706745500
+                      maximum: 1706745700
+                  - $_type: ConversationIdCollaborationLayerLogEntrySearchFilter
+                    field: CONVERSATION_ID
+                    operator:
+                      $_type: EqualsStringOperator
+                      type: EQUALS
+                      value: "1000"
+                  - $_type: LayerTypeCollaborationLayerLogEntrySearchFilter
+                    field: LAYER_TYPE
+                    operator:
+                      $_type: EqualsLayerTypeOperator
+                      type: EQUALS
+                      value: SCREEN_SHARING
+                  - $_type: StartingPersonIdCollaborationLayerLogEntrySearchFilter
+                    field: STARTING_PERSON_ID
+                    operator:
+                      $_type: EqualsStringOperator
+                      type: EQUALS
+                      value: "1000"
+                  orderBy:
+                  - $_type: CollaborationLayerLogEntryOrderBy
+                    field: STOP_TIMESTAMP
+                    order: ASCENDING
+                  offset: 0
+                  limit: 1
+              response-body:
+                summary: response body
+                description: Search for Collaboration Layer Log Entry with all possible filters
+                value:
+                  $_type: CollaborationLayerLogEntryResult
+                  hasMoreItems: false
+                  nextOffset: null
+                  items:
+                  - $_type: CollaborationLayerLogEntryData
+                    conversationId: AcviDb210C5BoFd6e_79oan
+                    layerType: SCREEN_SHARING
+                    layerOwnerPersonData:
+                      $_type: PersonData
+                      id: nta30CBa-6d1a89cE57Db_F
+                      accountId: A7d9E_0-c3cC4aoFDb85t6n
+                      personSource: USER_DB
+                      sourceId: r1acbAidia_35-tB4o7FbWR
+                      sourceUrl: null
+                      sourceData: null
+                      firstName: null
+                      lastName: null
+                      username: user@unblu.ch
+                      nickname: null
+                      displayName: user@unblu.ch
+                      displayNameForAgent: user@unblu.ch
+                      displayNameForVisitor: user@unblu.ch
+                      personType: AGENT
+                      authorizationRole: REGISTERED_USER
+                      email: null
+                      phone: 061 666 66 66
+                      teamId: null
+                      labels: []
+                      note: ""
+                      noteLastEditedTimestamp: null
+                      noteLastEditedPersonId: null
+                      avatar: null
+                      metadata: null
+                    startingPersonData:
+                      $_type: PersonData
+                      id: nta30CBa-6d1a89cE57Db_F
+                      accountId: A7d9E_0-c3cC4aoFDb85t6n
+                      personSource: USER_DB
+                      sourceId: r1acbAidia_35-tB4o7FbWR
+                      sourceUrl: null
+                      sourceData: null
+                      firstName: null
+                      lastName: null
+                      username: user@unblu.ch
+                      nickname: null
+                      displayName: user@unblu.ch
+                      displayNameForAgent: user@unblu.ch
+                      displayNameForVisitor: user@unblu.ch
+                      personType: AGENT
+                      authorizationRole: REGISTERED_USER
+                      email: null
+                      phone: 061 666 66 66
+                      teamId: null
+                      labels: []
+                      note: ""
+                      noteLastEditedTimestamp: null
+                      noteLastEditedPersonId: null
+                      avatar: null
+                      metadata: null
+                    stoppingPersonData:
+                      $_type: PersonData
+                      id: nta30CBa-6d1a89cE57Db_F
+                      accountId: A7d9E_0-c3cC4aoFDb85t6n
+                      personSource: USER_DB
+                      sourceId: r1acbAidia_35-tB4o7FbWR
+                      sourceUrl: null
+                      sourceData: null
+                      firstName: null
+                      lastName: null
+                      username: user@unblu.ch
+                      nickname: null
+                      displayName: user@unblu.ch
+                      displayNameForAgent: user@unblu.ch
+                      displayNameForVisitor: user@unblu.ch
+                      personType: AGENT
+                      authorizationRole: REGISTERED_USER
+                      email: null
+                      phone: 061 666 66 66
+                      teamId: null
+                      labels: []
+                      note: ""
+                      noteLastEditedTimestamp: null
+                      noteLastEditedPersonId: null
+                      avatar: null
+                      metadata: null
+                    startingTimestamp: 1551398400000
+                    approvalTimestamp: 1551398400000
+                    activationTimestamp: 1551398400000
+                    stopTimestamp: 1551398400000
+                    abortTimestamp: 1551398400000
+                    layerAbortReason: null
+        required: true
+      responses:
+        "200":
+          description: A result container
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollaborationLayerLogEntryResult'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      x-required-entry-path: INTERNAL
+      x-required-role:
+      - ADMIN
   /conversationhistory/{conversationId}/exportMessageLog:
     post:
       tags:
@@ -5996,7 +6181,7 @@ paths:
                   name: custom name
                   description: custom description
                   channelIcon: null
-                  sourceId: custom-sourceId
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   type: CUSTOM
                   webhookEndpoint: http://custom/endpoint
                   webhookApiVersion: V4
@@ -6032,7 +6217,7 @@ paths:
                     name: custom name
                     description: custom description
                     channelIcon: custom
-                    sourceId: custom-sourceId
+                    sourceId: r1acbAidia_35-tB4o7FbWR
                     type: CUSTOM
                     webhookEndpoint: http://custom/endpoint
                     webhookApiVersion: V4
@@ -6222,7 +6407,7 @@ paths:
                     name: 123 name
                     description: 123 description
                     channelIcon: custom
-                    sourceId: 123-sourceId
+                    sourceId: r1acbAidia_35-tB4o7FbWR
                     type: CUSTOM
                     webhookEndpoint: http://123/endpoint
                     webhookApiVersion: V4
@@ -6423,7 +6608,7 @@ paths:
                     name: custom name
                     description: custom description
                     channelIcon: custom
-                    sourceId: custom-sourceId
+                    sourceId: r1acbAidia_35-tB4o7FbWR
                     type: CUSTOM
                     webhookEndpoint: http://custom/endpoint
                     webhookApiVersion: V4
@@ -6577,7 +6762,7 @@ paths:
                   conversationId: AcviDb210C5BoFd6e_79oan
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds: null
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6585,6 +6770,7 @@ paths:
                     $_type: TextPostMessageData
                     type: TEXT
                     fallbackText: message from visitor fallback
+                    locale: null
                     text: 'message from visitor '
                     textType: SIMPLE_TEXT
                     quickReplies:
@@ -6600,7 +6786,7 @@ paths:
                   conversationId: AcviDb210C5BoFd6e_79oan
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds: null
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6608,6 +6794,7 @@ paths:
                     $_type: CardPostMessageData
                     type: CARD
                     fallbackText: This is the plain card body text
+                    locale: null
                     imageUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURfolAT39/6qSgZ2hko6xpLeDbrzfdCUAAAFvSURBVHja7c8BDYBADASwBQfvAAkkSOCRgH8rmLgwAq2D1lYZy+hVIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLvjxx7xuyOjI8QERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERedB5hXRH1koRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH5S2Sm3Pdeq7vUBkC2AAAAAElFTkSuQmCC"
                     imageAltText: test image
                     title: Card Title
@@ -6639,7 +6826,7 @@ paths:
                   conversationId: AcviDb210C5BoFd6e_79oan
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds: null
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6647,6 +6834,7 @@ paths:
                     $_type: FilePostMessageData
                     type: FILE
                     fallbackText: see file testImage.png
+                    locale: null
                     fileName: testImage.png
                     caption: 'see file from visitor '
                     captionType: SIMPLE_TEXT
@@ -6664,7 +6852,7 @@ paths:
                   conversationId: AcviDb210C5BoFd6e_79oan
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds: null
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6672,6 +6860,7 @@ paths:
                     $_type: ListPostMessageData
                     type: LIST
                     fallbackText: This is the plain list body text
+                    locale: null
                     header:
                       $_type: MessageHeader
                       imageUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQBAMAAABykSv/AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAASUExURfolAT39/6qSgZ2hko6xpLeDbrzfdCUAAAFvSURBVHja7c8BDYBADASwBQfvAAkkSOCRgH8rmLgwAq2D1lYZy+hVIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiLvjxx7xuyOjI8QERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERedB5hXRH1koRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERH5S2Sm3Pdeq7vUBkC2AAAAAElFTkSuQmCC"
@@ -6707,7 +6896,7 @@ paths:
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds:
                   - PtwoVi1O-2G9FFCR_rZLKQ
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6715,6 +6904,7 @@ paths:
                     $_type: MultichoiceQuestionPostMessageData
                     type: MULTICHOICE_QUESTION
                     fallbackText: question fallback text
+                    locale: null
                     text: 'question from visitor '
                     textType: SIMPLE_TEXT
                     options:
@@ -6739,7 +6929,7 @@ paths:
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds:
                   - PtwoVi1O-2G9FFCR_rZLKQ
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6747,6 +6937,7 @@ paths:
                     $_type: RatingQuestionPostMessageData
                     type: RATING_QUESTION
                     fallbackText: rating question fallback text
+                    locale: null
                     text: 'rating question from visitor '
                     textType: SIMPLE_TEXT
                     options:
@@ -6767,7 +6958,7 @@ paths:
                   conversationId: AcviDb210C5BoFd6e_79oan
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds: null
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6775,6 +6966,7 @@ paths:
                     $_type: TextPostMessageData
                     type: TEXT
                     fallbackText: null
+                    locale: null
                     text: Message from visitor
                     textType: null
                     quickReplies: null
@@ -6787,7 +6979,7 @@ paths:
                   senderExternalMessengerContactId: SE-c3SSNQOWPi9_y6sNsnQ
                   recipientPersonIds:
                   - PtwoVi1O-2G9FFCR_rZLKQ
-                  sourceId: message-source
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   replyToMessageId: null
                   externalMessageId: null
                   replyToExternalMessageId: null
@@ -6795,6 +6987,7 @@ paths:
                     $_type: TextQuestionPostMessageData
                     type: TEXT_QUESTION
                     fallbackText: question fallback text
+                    locale: null
                     text: 'question from visitor '
                     textType: SIMPLE_TEXT
                     questionType: SHORT_TEXT
@@ -6890,7 +7083,7 @@ paths:
                   name: 'Updated Name '
                   description: custom description
                   channelIcon: custom
-                  sourceId: custom-sourceId
+                  sourceId: r1acbAidia_35-tB4o7FbWR
                   type: CUSTOM
                   webhookEndpoint: http://custom/endpoint
                   webhookApiVersion: V4
@@ -6926,7 +7119,7 @@ paths:
                     name: 'Updated Name '
                     description: custom description
                     channelIcon: custom
-                    sourceId: custom-sourceId
+                    sourceId: r1acbAidia_35-tB4o7FbWR
                     type: CUSTOM
                     webhookEndpoint: http://custom/endpoint
                     webhookApiVersion: V4
@@ -10487,7 +10680,7 @@ paths:
                 summary: create suggestionSource
                 description: Create a new suggestion source
                 value:
-                  $_type: SuggestionSourceData
+                  $_type: CustomSuggestionSourceData
                   id: null
                   creationTimestamp: null
                   modificationTimestamp: null
@@ -10495,11 +10688,12 @@ paths:
                   accountId: null
                   name: test-suggestionSource-1
                   description: null
-                  outboundApiVersion: V4
                   outboundStatus: DISABLED
                   outboundEndpoint: https://test.unblu.com
-                  outboundSecret: null
                   outboundTimeoutMillis: 5000
+                  type: CUSTOM
+                  outboundApiVersion: V4
+                  outboundSecret: null
         required: true
       responses:
         "200":
@@ -10513,7 +10707,7 @@ paths:
                   summary: create suggestionSource
                   description: New suggestion source
                   value:
-                    $_type: SuggestionSourceData
+                    $_type: CustomSuggestionSourceData
                     id: eaaz3AiSRp6wIB2wGq6L0g
                     creationTimestamp: 1546300800000
                     modificationTimestamp: 1548979200000
@@ -10521,11 +10715,12 @@ paths:
                     accountId: A7d9E_0-c3cC4aoFDb85t6n
                     name: test-suggestionSource-1
                     description: null
-                    outboundApiVersion: V4
                     outboundStatus: DISABLED
                     outboundEndpoint: https://test.unblu.com
-                    outboundSecret: null
                     outboundTimeoutMillis: 5000
+                    type: CUSTOM
+                    outboundApiVersion: V4
+                    outboundSecret: null
         default:
           $ref: '#/components/responses/ErrorResponse'
       callbacks:
@@ -10602,7 +10797,7 @@ paths:
                   summary: get by name suggestionSource
                   description: Suggestion Source
                   value:
-                    $_type: SuggestionSourceData
+                    $_type: CustomSuggestionSourceData
                     id: eaaz3AiSRp6wIB2wGq6L0g
                     creationTimestamp: 1546300800000
                     modificationTimestamp: 1548979200000
@@ -10610,11 +10805,12 @@ paths:
                     accountId: A7d9E_0-c3cC4aoFDb85t6n
                     name: test-suggestionSource-1
                     description: null
-                    outboundApiVersion: V4
                     outboundStatus: DISABLED
                     outboundEndpoint: http://test.webhook.com
-                    outboundSecret: null
                     outboundTimeoutMillis: 5000
+                    type: CUSTOM
+                    outboundApiVersion: V4
+                    outboundSecret: null
         default:
           $ref: '#/components/responses/ErrorResponse'
       x-required-entry-path: INTERNAL
@@ -10648,7 +10844,7 @@ paths:
                   summary: read suggestionSource
                   description: Suggestion Source
                   value:
-                    $_type: SuggestionSourceData
+                    $_type: CustomSuggestionSourceData
                     id: eaaz3AiSRp6wIB2wGq6L0g
                     creationTimestamp: 1546300800000
                     modificationTimestamp: 1548979200000
@@ -10656,11 +10852,12 @@ paths:
                     accountId: A7d9E_0-c3cC4aoFDb85t6n
                     name: test-suggestionSource-1
                     description: null
-                    outboundApiVersion: V4
                     outboundStatus: DISABLED
                     outboundEndpoint: http://test.webhook.com
-                    outboundSecret: null
                     outboundTimeoutMillis: 5000
+                    type: CUSTOM
+                    outboundApiVersion: V4
+                    outboundSecret: null
         default:
           $ref: '#/components/responses/ErrorResponse'
       x-required-entry-path: INTERNAL
@@ -11917,6 +12114,76 @@ paths:
               responses:
                 "200":
                   description: OK
+        collaboration_layer.aborted:
+          '{$request.body#/endpoint}':
+            post:
+              summary: collaboration_layer.aborted
+              description: An event triggered every time collaboration layer in a conversation aborts
+              operationId: collaborationLayerAbortedCallback
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CollaborationLayerAbortedEvent'
+              responses:
+                "200":
+                  description: OK
+        collaboration_layer.activated:
+          '{$request.body#/endpoint}':
+            post:
+              summary: collaboration_layer.activated
+              description: "An event triggered every time a collaboration layer is activated in a conversation. At this point, the layer is fully functional and can be used."
+              operationId: collaborationLayerActivatedCallback
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CollaborationLayerActivatedEvent'
+              responses:
+                "200":
+                  description: OK
+        collaboration_layer.approved:
+          '{$request.body#/endpoint}':
+            post:
+              summary: collaboration_layer.approved
+              description: An event triggered every time a collaboration layer got approved by all necessary participants in a conversation
+              operationId: collaborationLayerApprovedCallback
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CollaborationLayerApprovedEvent'
+              responses:
+                "200":
+                  description: OK
+        collaboration_layer.started:
+          '{$request.body#/endpoint}':
+            post:
+              summary: collaboration_layer.started
+              description: An event triggered every time a collaboration layer starts in a conversation
+              operationId: collaborationLayerStartedCallback
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CollaborationLayerStartedEvent'
+              responses:
+                "200":
+                  description: OK
+        collaboration_layer.stopped:
+          '{$request.body#/endpoint}':
+            post:
+              summary: collaboration_layer.stopped
+              description: An event triggered every time collaboration layer in a conversation stops
+              operationId: collaborationLayerStoppedCallback
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/CollaborationLayerStoppedEvent'
+              responses:
+                "200":
+                  description: OK
         conversation.active:
           '{$request.body#/endpoint}':
             post:
@@ -13033,6 +13300,18 @@ paths:
       - ADMIN
 components:
   schemas:
+    AbortedTimestampCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: AbortedTimestampCollaborationLayerLogEntrySearchFilter
+          enum:
+          - AbortedTimestampCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/TimestampOperator'
     AcceptLinkData:
       type: object
       description: Model with information about links to accept conversation invitations
@@ -14189,6 +14468,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -16612,6 +16894,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         imageUrl:
           type: string
           description: URL of the image displayed at the top of the card.
@@ -16650,6 +16935,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         imageUrl:
           type: string
           description: "URL of the image displayed at the top of the card. (optional) <p> <ul> <li>The image is always displayed with an aspect ratio of 16:9</li> <li>If the image doesn't fit the aspect ratio it's magnified to cover the whole area</li> <li>Depending on the chat windows size, the image is displayed with a width of 200-400px.</li> </ul>"
@@ -16869,6 +17157,331 @@ components:
         mapping:
           EMPTY: '#/components/schemas/EmptyChatSuggestionResponse'
           TEXT: '#/components/schemas/TextChatSuggestionResponse'
+    CollaborationLayerAbortedEvent:
+      type: object
+      description: An event triggered every time collaboration layer in a conversation aborts
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerAbortedEvent
+          enum:
+          - CollaborationLayerAbortedEvent
+        timestamp:
+          type: integer
+          format: int64
+          description: The time (Unix time in ms) when the event was generated
+        eventType:
+          type: string
+          description: The name of the event
+        accountId:
+          type: string
+          description: The account ID the event originated from
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer initialization was started. The layer only will become active after all necessary participants approve it and the actual content is shared. The starting of the layer may also be aborted if e.g. not all participants accept it.
+        stoppingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        abortTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was aborted
+        layerStopReason:
+          $ref: '#/components/schemas/ELayerStopReason'
+        approvalTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was approved by all necessary participants
+    CollaborationLayerActivatedEvent:
+      type: object
+      description: "An event triggered every time a collaboration layer is activated in a conversation. At this point, the layer is fully functional and can be used."
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerActivatedEvent
+          enum:
+          - CollaborationLayerActivatedEvent
+        timestamp:
+          type: integer
+          format: int64
+          description: The time (Unix time in ms) when the event was generated
+        eventType:
+          type: string
+          description: The name of the event
+        accountId:
+          type: string
+          description: The account ID the event originated from
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer initialization was started. The layer only will become active after all necessary participants approve it and the actual content is shared. The starting of the layer may also be aborted if e.g. not all participants accept it.
+        activationTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was activated after approval
+        approvalTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was approved by all necessary participants
+    CollaborationLayerApprovedEvent:
+      type: object
+      description: An event triggered every time a collaboration layer got approved by all necessary participants in a conversation
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerApprovedEvent
+          enum:
+          - CollaborationLayerApprovedEvent
+        timestamp:
+          type: integer
+          format: int64
+          description: The time (Unix time in ms) when the event was generated
+        eventType:
+          type: string
+          description: The name of the event
+        accountId:
+          type: string
+          description: The account ID the event originated from
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer initialization was started. The layer only will become active after all necessary participants approve it and the actual content is shared. The starting of the layer may also be aborted if e.g. not all participants accept it.
+        approvalTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was approved by all necessary participants
+    CollaborationLayerLogEntryData:
+      type: object
+      description: Data class for collaboration layer log entries.
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerLogEntryData
+          enum:
+          - CollaborationLayerLogEntryData
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        stoppingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was started
+        approvalTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was approved
+        activationTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was activated
+        stopTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was stopped
+        abortTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was aborted
+        layerAbortReason:
+          $ref: '#/components/schemas/ELayerStopReason'
+    CollaborationLayerLogEntryOrderBy:
+      type: object
+      description: CollaborationLayerLogEntry orderBy item.
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerLogEntryOrderBy
+          enum:
+          - CollaborationLayerLogEntryOrderBy
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntryOrderByField'
+        order:
+          $ref: '#/components/schemas/Order'
+    CollaborationLayerLogEntryQuery:
+      type: object
+      description: Container to search CollaborationLayerLogEntries
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerLogEntryQuery
+          enum:
+          - CollaborationLayerLogEntryQuery
+        searchFilters:
+          type: array
+          description: List of filters to narrow the search of entities
+          items:
+            $ref: '#/components/schemas/CollaborationLayerLogEntrySearchFilter'
+        orderBy:
+          type: array
+          description: List of criteria to order the search result list
+          items:
+            $ref: '#/components/schemas/CollaborationLayerLogEntryOrderBy'
+        offset:
+          type: integer
+          format: int32
+          description: Offset position in the result set to start pagination
+        limit:
+          type: integer
+          format: int32
+          description: Maximal amount of items returned
+    CollaborationLayerLogEntryResult:
+      type: object
+      description: Container to return list of CollaborationLayerLogEntries
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerLogEntryResult
+          enum:
+          - CollaborationLayerLogEntryResult
+        hasMoreItems:
+          type: boolean
+          description: Flag to indicate if there are more items on the server
+        nextOffset:
+          type: integer
+          format: int32
+          description: "If there are more items present on the server, this value can be used as the offset in the next query"
+        items:
+          type: array
+          description: The returned list of entities
+          items:
+            $ref: '#/components/schemas/CollaborationLayerLogEntryData'
+    CollaborationLayerLogEntrySearchFilter:
+      description: Collaboration Layer Log Entry filter item.
+      oneOf:
+      - $ref: '#/components/schemas/StartingTimestampCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/StopTimestampCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/ConversationIdCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/StartingPersonIdCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/StoppingPersonIdCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/LayerTypeCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/LayerStopReasonCollaborationLayerLogEntrySearchFilter'
+      - $ref: '#/components/schemas/AbortedTimestampCollaborationLayerLogEntrySearchFilter'
+      discriminator:
+        propertyName: field
+        mapping:
+          ABORTED_TIMESTAMP: '#/components/schemas/AbortedTimestampCollaborationLayerLogEntrySearchFilter'
+          CONVERSATION_ID: '#/components/schemas/ConversationIdCollaborationLayerLogEntrySearchFilter'
+          LAYER_STOP_REASON: '#/components/schemas/LayerStopReasonCollaborationLayerLogEntrySearchFilter'
+          LAYER_TYPE: '#/components/schemas/LayerTypeCollaborationLayerLogEntrySearchFilter'
+          STARTING_PERSON_ID: '#/components/schemas/StartingPersonIdCollaborationLayerLogEntrySearchFilter'
+          STARTING_TIMESTAMP: '#/components/schemas/StartingTimestampCollaborationLayerLogEntrySearchFilter'
+          STOPPING_PERSON_ID: '#/components/schemas/StoppingPersonIdCollaborationLayerLogEntrySearchFilter'
+          STOP_TIMESTAMP: '#/components/schemas/StopTimestampCollaborationLayerLogEntrySearchFilter'
+    CollaborationLayerStartedEvent:
+      type: object
+      description: An event triggered every time a collaboration layer starts in a conversation
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerStartedEvent
+          enum:
+          - CollaborationLayerStartedEvent
+        timestamp:
+          type: integer
+          format: int64
+          description: The time (Unix time in ms) when the event was generated
+        eventType:
+          type: string
+          description: The name of the event
+        accountId:
+          type: string
+          description: The account ID the event originated from
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer initialization was started. The layer only will become active after all necessary participants approve it and the actual content is shared. The starting of the layer may also be aborted if e.g. not all participants accept it.
+    CollaborationLayerStoppedEvent:
+      type: object
+      description: An event triggered every time collaboration layer in a conversation stops
+      properties:
+        $_type:
+          type: string
+          default: CollaborationLayerStoppedEvent
+          enum:
+          - CollaborationLayerStoppedEvent
+        timestamp:
+          type: integer
+          format: int64
+          description: The time (Unix time in ms) when the event was generated
+        eventType:
+          type: string
+          description: The name of the event
+        accountId:
+          type: string
+          description: The account ID the event originated from
+        conversationId:
+          type: string
+          description: The ID of the conversation the event originated from
+        layerType:
+          $ref: '#/components/schemas/ELayerType'
+        layerOwnerPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        startingTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer initialization was started. The layer only will become active after all necessary participants approve it and the actual content is shared. The starting of the layer may also be aborted if e.g. not all participants accept it.
+        stoppingPersonData:
+          $ref: '#/components/schemas/PersonData'
+        stopTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was stopped
+        activationTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was activated after approval
+        approvalTimestamp:
+          type: integer
+          format: int64
+          description: The timestamp when the layer was approved by all necessary participants
+        layerStopReason:
+          $ref: '#/components/schemas/ELayerStopReason'
     CompoundOperator:
       oneOf:
       - $ref: '#/components/schemas/AndCompoundOperator'
@@ -17748,6 +18361,18 @@ components:
           $ref: '#/components/schemas/ECannedResponseUsageSearchFilterField'
         operator:
           $ref: '#/components/schemas/IdOperator'
+    ConversationIdCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: ConversationIdCollaborationLayerLogEntrySearchFilter
+          enum:
+          - ConversationIdCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/StringOperator'
     ConversationIdConversationInvitationSearchFilter:
       type: object
       properties:
@@ -18874,6 +19499,59 @@ components:
         visitorData:
           type: string
           description: Custom visitor data in any format.
+    CopilotSuggestionSourceData:
+      type: object
+      description: API model that represents a copilot suggestion source
+      properties:
+        $_type:
+          type: string
+          default: CopilotSuggestionSourceData
+          enum:
+          - CopilotSuggestionSourceData
+        id:
+          type: string
+          description: "Unique ID of the entity. When creating an entity, this property can be omitted; it's generated by the server."
+        creationTimestamp:
+          type: integer
+          format: int64
+          description: "Creation timestamp of the entity. It is defined when the entity is first stored in Unblu. Any value sent to the Unblu server is ignored, so it can be omitted. Note: If you set this property, Unblu returns the same value, but it isn't written to storage and doesn't affect data consistency."
+        modificationTimestamp:
+          type: integer
+          format: int64
+          description: "Timestamp of the last modification. This property is always optional and can be omitted when sending data to the server. If sent to the server, it is ignored. It is only informational in character. Note: If you set this property, it returns the same value but it isn't written to storage and doesn't affect the data consistency."
+        version:
+          type: integer
+          format: int64
+          description: "Version of the entity. Will be incremented on each change. New updates must always be based on the newest version, if not updates will be rejected. When creating an object, the version can be omitted."
+        accountId:
+          type: string
+          description: "ID of the account the entity belongs to. When creating an entity, the account ID can be omitted. It will be filled by the server with the account ID of the user currently logged in. When editing an entity, you must include the account ID."
+        name:
+          type: string
+          description: Name of the message interceptor. Maximum length of 250 characters. Mandatory.
+        description:
+          type: string
+          description: Description of the message interceptor. Maximum length of 500 characters. Optional.
+        outboundStatus:
+          $ref: '#/components/schemas/EOutboundEndpointStatus'
+        outboundEndpoint:
+          type: string
+          description: "The endpoint url of the outbound registration. To this url the requests for the outbound requests are done. Maximum length of 4000 characters. <p> The following requests will be sent to the endpoint: <ul> <li>` OutboundRequest#ServiceNameConstants#CONVERSATION_CHAT_SUGGESTION`: When a suggestion for one or more chat messages is requested.</li> <li>` OutboundRequest#ServiceNameConstants#PING`: When pinging the endpoint.</li> </ul>"
+        outboundTimeoutMillis:
+          type: integer
+          format: int64
+          description: The timeout for the requests sent to the outbound endpoint. Mandatory.
+        type:
+          $ref: '#/components/schemas/ESuggestionSourceType'
+        authToken:
+          type: string
+          description: "Authentication token for the communication with Microsoft Copilot Studio Agent. Maximum length: 2000 characters."
+        copilotId:
+          type: string
+          description: "The Copilot Agent ID for selecting the correct copilot. Maximum length: 36 characters"
+        copilotEnvironmentId:
+          type: string
+          description: "The Microsoft environment ID. Used by Microsoft Copilot. Maximum length: 2000 characters"
     CountResult:
       type: object
       description: General container for result of count method
@@ -20054,6 +20732,55 @@ components:
           $ref: '#/components/schemas/ConversationData'
         person:
           $ref: '#/components/schemas/PersonData'
+    CustomSuggestionSourceData:
+      type: object
+      description: API model that represents a custom suggestion source
+      properties:
+        $_type:
+          type: string
+          default: CustomSuggestionSourceData
+          enum:
+          - CustomSuggestionSourceData
+        id:
+          type: string
+          description: "Unique ID of the entity. When creating an entity, this property can be omitted; it's generated by the server."
+        creationTimestamp:
+          type: integer
+          format: int64
+          description: "Creation timestamp of the entity. It is defined when the entity is first stored in Unblu. Any value sent to the Unblu server is ignored, so it can be omitted. Note: If you set this property, Unblu returns the same value, but it isn't written to storage and doesn't affect data consistency."
+        modificationTimestamp:
+          type: integer
+          format: int64
+          description: "Timestamp of the last modification. This property is always optional and can be omitted when sending data to the server. If sent to the server, it is ignored. It is only informational in character. Note: If you set this property, it returns the same value but it isn't written to storage and doesn't affect the data consistency."
+        version:
+          type: integer
+          format: int64
+          description: "Version of the entity. Will be incremented on each change. New updates must always be based on the newest version, if not updates will be rejected. When creating an object, the version can be omitted."
+        accountId:
+          type: string
+          description: "ID of the account the entity belongs to. When creating an entity, the account ID can be omitted. It will be filled by the server with the account ID of the user currently logged in. When editing an entity, you must include the account ID."
+        name:
+          type: string
+          description: Name of the message interceptor. Maximum length of 250 characters. Mandatory.
+        description:
+          type: string
+          description: Description of the message interceptor. Maximum length of 500 characters. Optional.
+        outboundStatus:
+          $ref: '#/components/schemas/EOutboundEndpointStatus'
+        outboundEndpoint:
+          type: string
+          description: "The endpoint url of the outbound registration. To this url the requests for the outbound requests are done. Maximum length of 4000 characters. <p> The following requests will be sent to the endpoint: <ul> <li>` OutboundRequest#ServiceNameConstants#CONVERSATION_CHAT_SUGGESTION`: When a suggestion for one or more chat messages is requested.</li> <li>` OutboundRequest#ServiceNameConstants#PING`: When pinging the endpoint.</li> </ul>"
+        outboundTimeoutMillis:
+          type: integer
+          format: int64
+          description: The timeout for the requests sent to the outbound endpoint. Mandatory.
+        type:
+          $ref: '#/components/schemas/ESuggestionSourceType'
+        outboundApiVersion:
+          $ref: '#/components/schemas/EWebApiVersion'
+        outboundSecret:
+          type: string
+          description: Secret sent with each outbound request. Optional. <p> Maximum length of 4000 characters.
     DateTimeParameterValue:
       type: object
       properties:
@@ -20469,6 +21196,10 @@ components:
         ownerPersonId:
           type: string
           description: The person id of the device info owner
+        lastSuccessful2FATimestamp:
+          type: integer
+          format: int64
+          description: Timestamp for the last successful two-factor authentication (2FA). Used to check if the current 2FA is still valid.
     DialogBotData:
       type: object
       description: Model representing an external dialog bot that can handle conversation onboarding and offboarding.
@@ -21037,6 +21768,7 @@ components:
       - SUPERVISOR
       - REGISTERED_USER
       - WEBUSER
+      - PARTIALLY_AUTHENTICATED
       - ANONYMOUS_USER
       x-enum-descriptions:
       - "SUPER_ADMIN: Super admin role. Only for unblu or system admins"
@@ -21045,6 +21777,7 @@ components:
       - "SUPERVISOR: Supervisor role. For users which manage teams"
       - "REGISTERED_USER: User role. For normal users (agents)"
       - "WEBUSER: Webuser role. For internal representation of users from the outside"
+      - "PARTIALLY_AUTHENTICATED: Partially authenticated. For users who have logged in but haven't completed 2FA."
       - "ANONYMOUS_USER: Anonymous role. For internal representation of unknown users"
     EAuthorizationRoleOperatorType:
       type: string
@@ -21369,6 +22102,56 @@ components:
       x-enum-descriptions:
       - EMPTY
       - TEXT
+    ECollaborationLayerLogEntryOrderByField:
+      type: string
+      enum:
+      - ID
+      - CONVERSATION_ID
+      - CREATION_TIMESTAMP
+      - MODIFICATION_TIMESTAMP
+      - LAYER_TYPE
+      - STARTING_PERSON_ID
+      - STOPPING_PERSON_ID
+      - ACTIVATION_TIMESTAMP
+      - STARTING_TIMESTAMP
+      - APPROVAL_TIMESTAMP
+      - STOP_TIMESTAMP
+      - ABORTED_TIMESTAMP
+      - LAYER_STOP_REASON
+      x-enum-descriptions:
+      - "ID: Sort by the 'id' attribute"
+      - "CONVERSATION_ID: Sort by the 'conversationId' attribute"
+      - "CREATION_TIMESTAMP: Sort by the 'creationTimestamp' attribute"
+      - "MODIFICATION_TIMESTAMP: Sort by the 'modificationTimestamp' attribute"
+      - "LAYER_TYPE: Sort by the 'layerType' attribute"
+      - "STARTING_PERSON_ID: Sort by the 'startingPersonId' attribute"
+      - "STOPPING_PERSON_ID: Sort by the 'stoppingPersonId' attribute"
+      - "ACTIVATION_TIMESTAMP: Sort by the 'activatingTimestamp' attribute"
+      - "STARTING_TIMESTAMP: Sort by the 'startingTimestamp' attribute"
+      - "APPROVAL_TIMESTAMP: Sort by the 'approvalTimestamp' attribute"
+      - "STOP_TIMESTAMP: Sort by the 'stopTimestamp' attribute"
+      - "ABORTED_TIMESTAMP: Sort by the 'abortedTimestamp' attribute"
+      - "LAYER_STOP_REASON: Sort by the 'layerStopReason' attribute"
+    ECollaborationLayerLogEntrySearchFilterField:
+      type: string
+      enum:
+      - CONVERSATION_ID
+      - STARTING_TIMESTAMP
+      - STOP_TIMESTAMP
+      - ABORTED_TIMESTAMP
+      - LAYER_STOP_REASON
+      - LAYER_TYPE
+      - STARTING_PERSON_ID
+      - STOPPING_PERSON_ID
+      x-enum-descriptions:
+      - "CONVERSATION_ID: Filter by the 'conversationId' attribute"
+      - "STARTING_TIMESTAMP: Filter by the 'startingTimestamp' attribute"
+      - "STOP_TIMESTAMP: Filter by the 'stopTimestamp' attribute"
+      - "ABORTED_TIMESTAMP: Filter by the 'abortedTimestamp' attribute"
+      - "LAYER_STOP_REASON: Filter by the 'layerStopReason' attribute"
+      - "LAYER_TYPE: Filter by the 'layerType' attribute"
+      - "STARTING_PERSON_ID: Filter by the 'startingPersonId' attribute"
+      - "STOPPING_PERSON_ID: Filter by the 'stoppingPersonId' attribute"
     ECompoundOperatorType:
       type: string
       enum:
@@ -23037,6 +23820,71 @@ components:
       - "NOT_EQUALS: Check if the value is different from the one provided in the operator"
       - "IN: Check if the value is one of the one provided in the operator"
       - "NOT_IN: Check if the value is not one of the one provided in the operator"
+    ELayerStopReason:
+      type: string
+      enum:
+      - STOPPED_BY_USER
+      - APPROVAL_DECLINED
+      - REMOVED
+      - INACTIVITY
+      - RECORDING_STOPPED
+      - CONVERSATION_OFFBOARDING
+      - SYSTEM_SHUTDOWN
+      - ACTIVATION_ERROR
+      - RENDERING_SERVICE_STOPPED
+      x-enum-descriptions:
+      - "STOPPED_BY_USER: Layer was explicitly stopped by the user"
+      - "APPROVAL_DECLINED: Layer approval was declined by the user"
+      - "REMOVED: Layer was removed as it is no longer supported or is unavailable for the person"
+      - "INACTIVITY: Layer was stopped due to inactivity"
+      - "RECORDING_STOPPED: Recording of the layer was stopped. This will also stop the layer if the recording is mandatory"
+      - "CONVERSATION_OFFBOARDING: Layer was stopped by the system due to conversation going into the offboarding phase"
+      - "SYSTEM_SHUTDOWN: Layer was stopped due to shutdown of the whole system"
+      - "ACTIVATION_ERROR: Layer was stopped due to an error. This error could be a decline, abortion or canceling of the active layer"
+      - "RENDERING_SERVICE_STOPPED: The headless browser disconnected and the layer was stopped"
+    ELayerStopReasonOperatorType:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - IN
+      - NOT_IN
+      x-enum-descriptions:
+      - "EQUALS: Check if the value is equal to the one provided in the operator"
+      - "NOT_EQUALS: Check if the value is different from the one provided in the operator"
+      - "IN: Check if the value is one of the one provided in the operator"
+      - "NOT_IN: Check if the value is not one of the one provided in the operator"
+    ELayerType:
+      type: string
+      description: The type of collaboration layer in a conversation
+      enum:
+      - SCREEN_SHARING
+      - EMBEDDED_COBROWSING
+      - CONTEXT_MIGRATION_COBROWSING
+      - MOBILE_COBROWSING
+      - DOCUMENT_COBROWSING
+      - WHITEBOARD
+      - UNIVERSAL_COBROWSING
+      x-enum-descriptions:
+      - SCREEN_SHARING
+      - EMBEDDED_COBROWSING
+      - CONTEXT_MIGRATION_COBROWSING
+      - MOBILE_COBROWSING
+      - DOCUMENT_COBROWSING
+      - WHITEBOARD
+      - UNIVERSAL_COBROWSING
+    ELayerTypeOperatorType:
+      type: string
+      enum:
+      - EQUALS
+      - NOT_EQUALS
+      - IN
+      - NOT_IN
+      x-enum-descriptions:
+      - "EQUALS: Check if the value is equal to the one provided in the operator"
+      - "NOT_EQUALS: Check if the value is different from the one provided in the operator"
+      - "IN: Check if the value is one of the one provided in the operator"
+      - "NOT_IN: Check if the value is not one of the one provided in the operator"
     ELicenseState:
       type: string
       description: State of the global server license
@@ -23844,6 +24692,14 @@ components:
       - "NAME: Filter by the 'name' attribute"
       - "CREATION_TIMESTAMP: Filter by the 'creationTimestamp' attribute"
       - "MODIFICATION_TIMESTAMP: Filter by the 'modificationTimestamp' attribute"
+    ESuggestionSourceType:
+      type: string
+      enum:
+      - CUSTOM
+      - COPILOT
+      x-enum-descriptions:
+      - "CUSTOM: Suggestion source that uses the Unblu web API"
+      - "COPILOT: Suggestion source that uses Microsoft Copilot"
     ETeamOrderByField:
       type: string
       enum:
@@ -24499,6 +25355,30 @@ components:
           $ref: '#/components/schemas/EInvitationTypeOperatorType'
         value:
           $ref: '#/components/schemas/EInvitationType'
+    EqualsLayerStopReasonOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: EqualsLayerStopReasonOperator
+          enum:
+          - EqualsLayerStopReasonOperator
+        type:
+          $ref: '#/components/schemas/ELayerStopReasonOperatorType'
+        value:
+          $ref: '#/components/schemas/ELayerStopReason'
+    EqualsLayerTypeOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: EqualsLayerTypeOperator
+          enum:
+          - EqualsLayerTypeOperator
+        type:
+          $ref: '#/components/schemas/ELayerTypeOperatorType'
+        value:
+          $ref: '#/components/schemas/ELayerType'
     EqualsOnlineStateOperator:
       type: object
       properties:
@@ -25526,6 +26406,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         fileName:
           type: string
           description: The name of the file that is send
@@ -25577,6 +26460,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         fileName:
           type: string
           description: The name of the file that is send
@@ -26192,6 +27078,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EInvitationType'
+    InLayerStopReasonOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: InLayerStopReasonOperator
+          enum:
+          - InLayerStopReasonOperator
+        type:
+          $ref: '#/components/schemas/ELayerStopReasonOperatorType'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ELayerStopReason'
+    InLayerTypeOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: InLayerTypeOperator
+          enum:
+          - InLayerTypeOperator
+        type:
+          $ref: '#/components/schemas/ELayerTypeOperatorType'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ELayerType'
     InPersonSourceOperator:
       type: object
       properties:
@@ -27040,6 +27954,56 @@ components:
           $ref: '#/components/schemas/EUserSearchFilterField'
         operator:
           $ref: '#/components/schemas/StringOperator'
+    LayerStopReasonCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: LayerStopReasonCollaborationLayerLogEntrySearchFilter
+          enum:
+          - LayerStopReasonCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/LayerStopReasonOperator'
+    LayerStopReasonOperator:
+      oneOf:
+      - $ref: '#/components/schemas/EqualsLayerStopReasonOperator'
+      - $ref: '#/components/schemas/NotEqualsLayerStopReasonOperator'
+      - $ref: '#/components/schemas/InLayerStopReasonOperator'
+      - $ref: '#/components/schemas/NotInLayerStopReasonOperator'
+      discriminator:
+        propertyName: type
+        mapping:
+          EQUALS: '#/components/schemas/EqualsLayerStopReasonOperator'
+          IN: '#/components/schemas/InLayerStopReasonOperator'
+          NOT_EQUALS: '#/components/schemas/NotEqualsLayerStopReasonOperator'
+          NOT_IN: '#/components/schemas/NotInLayerStopReasonOperator'
+    LayerTypeCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: LayerTypeCollaborationLayerLogEntrySearchFilter
+          enum:
+          - LayerTypeCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/LayerTypeOperator'
+    LayerTypeOperator:
+      oneOf:
+      - $ref: '#/components/schemas/EqualsLayerTypeOperator'
+      - $ref: '#/components/schemas/NotEqualsLayerTypeOperator'
+      - $ref: '#/components/schemas/InLayerTypeOperator'
+      - $ref: '#/components/schemas/NotInLayerTypeOperator'
+      discriminator:
+        propertyName: type
+        mapping:
+          EQUALS: '#/components/schemas/EqualsLayerTypeOperator'
+          IN: '#/components/schemas/InLayerTypeOperator'
+          NOT_EQUALS: '#/components/schemas/NotEqualsLayerTypeOperator'
+          NOT_IN: '#/components/schemas/NotInLayerTypeOperator'
     LdapSyncJobEvent:
       type: object
       description: Event sent when the LDAP sync job finishes.
@@ -27210,6 +28174,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         header:
           $ref: '#/components/schemas/MessageHeader'
         items:
@@ -27241,6 +28208,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         header:
           $ref: '#/components/schemas/MessageHeader'
         items:
@@ -27957,6 +28927,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -28001,6 +28974,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         text:
           type: string
           description: Question message text
@@ -28790,6 +29766,30 @@ components:
           $ref: '#/components/schemas/EInvitationTypeOperatorType'
         value:
           $ref: '#/components/schemas/EInvitationType'
+    NotEqualsLayerStopReasonOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: NotEqualsLayerStopReasonOperator
+          enum:
+          - NotEqualsLayerStopReasonOperator
+        type:
+          $ref: '#/components/schemas/ELayerStopReasonOperatorType'
+        value:
+          $ref: '#/components/schemas/ELayerStopReason'
+    NotEqualsLayerTypeOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: NotEqualsLayerTypeOperator
+          enum:
+          - NotEqualsLayerTypeOperator
+        type:
+          $ref: '#/components/schemas/ELayerTypeOperatorType'
+        value:
+          $ref: '#/components/schemas/ELayerType'
     NotEqualsPauseNotificationsModeOperator:
       type: object
       properties:
@@ -29126,6 +30126,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EInvitationType'
+    NotInLayerStopReasonOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: NotInLayerStopReasonOperator
+          enum:
+          - NotInLayerStopReasonOperator
+        type:
+          $ref: '#/components/schemas/ELayerStopReasonOperatorType'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ELayerStopReason'
+    NotInLayerTypeOperator:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: NotInLayerTypeOperator
+          enum:
+          - NotInLayerTypeOperator
+        type:
+          $ref: '#/components/schemas/ELayerTypeOperatorType'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ELayerType'
     NotInPersonSourceOperator:
       type: object
       properties:
@@ -31155,6 +32183,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         questionMessageId:
           type: string
           description: ID of the question message for which this reply is
@@ -31256,6 +32287,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -31306,6 +32340,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         text:
           type: string
           description: Question message text
@@ -31525,6 +32562,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         blobId:
           type: string
           description: The blob store ID of the recording
@@ -31620,6 +32660,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         questionMessageId:
           type: string
           description: ID of the question message for which this reply is
@@ -31640,6 +32683,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         questionMessageId:
           type: string
           description: ID of the question message for which this reply is
@@ -32075,6 +33121,30 @@ components:
           $ref: '#/components/schemas/EPersonTypedSearchFilterField'
         operator:
           $ref: '#/components/schemas/IdOperator'
+    StartingPersonIdCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: StartingPersonIdCollaborationLayerLogEntrySearchFilter
+          enum:
+          - StartingPersonIdCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/StringOperator'
+    StartingTimestampCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: StartingTimestampCollaborationLayerLogEntrySearchFilter
+          enum:
+          - StartingTimestampCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/TimestampOperator'
     StartsWithIdOperator:
       type: object
       properties:
@@ -32123,6 +33193,30 @@ components:
           $ref: '#/components/schemas/EAgentStateSearchFilterField'
         operator:
           $ref: '#/components/schemas/StringOperator'
+    StopTimestampCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: StopTimestampCollaborationLayerLogEntrySearchFilter
+          enum:
+          - StopTimestampCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/TimestampOperator'
+    StoppingPersonIdCollaborationLayerLogEntrySearchFilter:
+      type: object
+      properties:
+        $_type:
+          type: string
+          default: StoppingPersonIdCollaborationLayerLogEntrySearchFilter
+          enum:
+          - StoppingPersonIdCollaborationLayerLogEntrySearchFilter
+        field:
+          $ref: '#/components/schemas/ECollaborationLayerLogEntrySearchFilterField'
+        operator:
+          $ref: '#/components/schemas/StringOperator'
     StringOperator:
       oneOf:
       - $ref: '#/components/schemas/EqualsStringOperator'
@@ -32143,52 +33237,15 @@ components:
           NOT_EQUALS: '#/components/schemas/NotEqualsStringOperator'
           NOT_IN: '#/components/schemas/NotInStringOperator'
     SuggestionSourceData:
-      type: object
       description: API Model representing a suggestion source
-      properties:
-        $_type:
-          type: string
-          default: SuggestionSourceData
-          enum:
-          - SuggestionSourceData
-        id:
-          type: string
-          description: "Unique ID of the entity. When creating an entity, this property can be omitted; it's generated by the server."
-        creationTimestamp:
-          type: integer
-          format: int64
-          description: "Creation timestamp of the entity. It is defined when the entity is first stored in Unblu. Any value sent to the Unblu server is ignored, so it can be omitted. Note: If you set this property, Unblu returns the same value, but it isn't written to storage and doesn't affect data consistency."
-        modificationTimestamp:
-          type: integer
-          format: int64
-          description: "Timestamp of the last modification. This property is always optional and can be omitted when sending data to the server. If sent to the server, it is ignored. It is only informational in character. Note: If you set this property, it returns the same value but it isn't written to storage and doesn't affect the data consistency."
-        version:
-          type: integer
-          format: int64
-          description: "Version of the entity. Will be incremented on each change. New updates must always be based on the newest version, if not updates will be rejected. When creating an object, the version can be omitted."
-        accountId:
-          type: string
-          description: "ID of the account the entity belongs to. When creating an entity, the account ID can be omitted. It will be filled by the server with the account ID of the user currently logged in. When editing an entity, you must include the account ID."
-        name:
-          type: string
-          description: Name of the message interceptor. Maximum length of 250 characters. Mandatory.
-        description:
-          type: string
-          description: Description of the message interceptor. Maximum length of 500 characters. Optional.
-        outboundApiVersion:
-          $ref: '#/components/schemas/EWebApiVersion'
-        outboundStatus:
-          $ref: '#/components/schemas/EOutboundEndpointStatus'
-        outboundEndpoint:
-          type: string
-          description: "The endpoint url of the outbound registration. To this url the requests for the outbound requests are done. Maximum length of 4000 characters. <p> The following requests will be sent to the endpoint: <ul> <li>` OutboundRequest#ServiceNameConstants#CONVERSATION_CHAT_SUGGESTION`: When a suggestion for one or more chat messages is requested.</li> <li>` OutboundRequest#ServiceNameConstants#PING`: When pinging the endpoint.</li> </ul>"
-        outboundSecret:
-          type: string
-          description: Optional secret which is send with each outbound request. <p> Maximum length of 4000 characters.
-        outboundTimeoutMillis:
-          type: integer
-          format: int64
-          description: The timeout for the requests sent to the outbound endpoint. Mandatory.
+      oneOf:
+      - $ref: '#/components/schemas/CustomSuggestionSourceData'
+      - $ref: '#/components/schemas/CopilotSuggestionSourceData'
+      discriminator:
+        propertyName: type
+        mapping:
+          COPILOT: '#/components/schemas/CopilotSuggestionSourceData'
+          CUSTOM: '#/components/schemas/CustomSuggestionSourceData'
     SuggestionSourceOrderBy:
       type: object
       description: SuggestionSource orderBy item.
@@ -32327,6 +33384,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -32714,6 +33774,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -32738,6 +33801,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         text:
           type: string
           description: Message text
@@ -32813,6 +33879,9 @@ components:
         replyToExternalMessageId:
           type: string
           description: Optional external ID that identifies the message this message is replying to
+        locale:
+          type: string
+          description: "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language."
         text:
           type: string
           description: Text of the message
@@ -32859,6 +33928,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         text:
           type: string
           description: Message text
@@ -34072,6 +35144,9 @@ components:
         fallbackText:
           type: string
           description: "Optional fallback text which is used when: <ul> <li>Unblu can't restore the complex content of a message</li> <li>A push notification couldn't be decrypted</li> <li>Last message in the conversation overview</li> </ul> The usage of this field is recommended especially for complex message types.<br> The value must not contain markdown.<br> If no fallback is given, a fallback text based on the content of the message is generated. This may however not always be a perfect textual representation of the message.<br>"
+        locale:
+          type: string
+          description: Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.
         templateId:
           type: string
           description: ID of the message template

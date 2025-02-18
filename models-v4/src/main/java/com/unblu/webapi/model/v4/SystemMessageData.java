@@ -40,6 +40,7 @@ import io.swagger.annotations.ApiModelProperty;
 	SystemMessageData.JSON_PROPERTY_REPLY_TO_MESSAGE_ID,
 	SystemMessageData.JSON_PROPERTY_EXTERNAL_MESSAGE_ID,
 	SystemMessageData.JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID,
+	SystemMessageData.JSON_PROPERTY_LOCALE,
 	SystemMessageData.JSON_PROPERTY_TEXT,
 })
 @JsonAutoDetect(creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.NONE, getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
@@ -152,6 +153,10 @@ public class SystemMessageData implements MessageData {
 	public static final String JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID = "replyToExternalMessageId";
 	@JsonProperty(JSON_PROPERTY_REPLY_TO_EXTERNAL_MESSAGE_ID)
 	private String replyToExternalMessageId;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_TEXT = "text";
 	@JsonProperty(JSON_PROPERTY_TEXT)
@@ -530,6 +535,26 @@ public class SystemMessageData implements MessageData {
 		this.replyToExternalMessageId = replyToExternalMessageId;
 	}
 
+	public SystemMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it&#39;s in
+	 * the conversation language.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Language of the message provided in the BCP 47 language tag format, including the region if available. If omitted, the message is processed as if it's in the conversation language.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
 	public SystemMessageData text(String text) {
 		this.text = text;
 		return this;
@@ -577,12 +602,13 @@ public class SystemMessageData implements MessageData {
 				Objects.equals(this.replyToMessageId, systemMessageData.replyToMessageId) &&
 				Objects.equals(this.externalMessageId, systemMessageData.externalMessageId) &&
 				Objects.equals(this.replyToExternalMessageId, systemMessageData.replyToExternalMessageId) &&
+				Objects.equals(this.locale, systemMessageData.locale) &&
 				Objects.equals(this.text, systemMessageData.text);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, text);
+		return Objects.hash($type, id, conversationId, externalMessengerChannelId, accountId, senderPerson, senderPersonPresenceId, serverTimestamp, sendTimestamp, type, recipientPersonIds, fallbackText, actionId, sourceId, botThreadId, internal, replyToMessageId, externalMessageId, replyToExternalMessageId, locale, text);
 	}
 
 	@Override
@@ -608,6 +634,7 @@ public class SystemMessageData implements MessageData {
 		sb.append("    replyToMessageId: ").append(toIndentedString(replyToMessageId)).append("\n");
 		sb.append("    externalMessageId: ").append(toIndentedString(externalMessageId)).append("\n");
 		sb.append("    replyToExternalMessageId: ").append(toIndentedString(replyToExternalMessageId)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    text: ").append(toIndentedString(text)).append("\n");
 		sb.append("}");
 		return sb.toString();

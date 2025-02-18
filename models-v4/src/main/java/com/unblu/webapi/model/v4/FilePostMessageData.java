@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 	FilePostMessageData.JSON_PROPERTY_$_TYPE,
 	FilePostMessageData.JSON_PROPERTY_TYPE,
 	FilePostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	FilePostMessageData.JSON_PROPERTY_LOCALE,
 	FilePostMessageData.JSON_PROPERTY_FILE_NAME,
 	FilePostMessageData.JSON_PROPERTY_CAPTION,
 	FilePostMessageData.JSON_PROPERTY_CAPTION_TYPE,
@@ -76,6 +77,10 @@ public class FilePostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_FILE_NAME = "fileName";
 	@JsonProperty(JSON_PROPERTY_FILE_NAME)
@@ -155,6 +160,27 @@ public class FilePostMessageData implements PostMessageData {
 
 	public void setFallbackText(String fallbackText) {
 		this.fallbackText = fallbackText;
+	}
+
+	public FilePostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public FilePostMessageData fileName(String fileName) {
@@ -272,6 +298,7 @@ public class FilePostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, filePostMessageData.$type) &&
 				Objects.equals(this.type, filePostMessageData.type) &&
 				Objects.equals(this.fallbackText, filePostMessageData.fallbackText) &&
+				Objects.equals(this.locale, filePostMessageData.locale) &&
 				Objects.equals(this.fileName, filePostMessageData.fileName) &&
 				Objects.equals(this.caption, filePostMessageData.caption) &&
 				Objects.equals(this.captionType, filePostMessageData.captionType) &&
@@ -281,7 +308,7 @@ public class FilePostMessageData implements PostMessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, fileName, caption, captionType, fileData, quickReplies);
+		return Objects.hash($type, type, fallbackText, locale, fileName, caption, captionType, fileData, quickReplies);
 	}
 
 	@Override
@@ -291,6 +318,7 @@ public class FilePostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
 		sb.append("    caption: ").append(toIndentedString(caption)).append("\n");
 		sb.append("    captionType: ").append(toIndentedString(captionType)).append("\n");

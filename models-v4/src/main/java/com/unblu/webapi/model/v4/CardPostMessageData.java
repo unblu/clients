@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 	CardPostMessageData.JSON_PROPERTY_$_TYPE,
 	CardPostMessageData.JSON_PROPERTY_TYPE,
 	CardPostMessageData.JSON_PROPERTY_FALLBACK_TEXT,
+	CardPostMessageData.JSON_PROPERTY_LOCALE,
 	CardPostMessageData.JSON_PROPERTY_IMAGE_URL,
 	CardPostMessageData.JSON_PROPERTY_IMAGE_ALT_TEXT,
 	CardPostMessageData.JSON_PROPERTY_TITLE,
@@ -79,6 +80,10 @@ public class CardPostMessageData implements PostMessageData {
 	public static final String JSON_PROPERTY_FALLBACK_TEXT = "fallbackText";
 	@JsonProperty(JSON_PROPERTY_FALLBACK_TEXT)
 	private String fallbackText;
+
+	public static final String JSON_PROPERTY_LOCALE = "locale";
+	@JsonProperty(JSON_PROPERTY_LOCALE)
+	private String locale;
 
 	public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
 	@JsonProperty(JSON_PROPERTY_IMAGE_URL)
@@ -166,6 +171,27 @@ public class CardPostMessageData implements PostMessageData {
 
 	public void setFallbackText(String fallbackText) {
 		this.fallbackText = fallbackText;
+	}
+
+	public CardPostMessageData locale(String locale) {
+		this.locale = locale;
+		return this;
+	}
+
+	/**
+	 * Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically
+	 * detected based on the provided content. If the detection can&#39;t confidently detect the language the message will be considered to be in the
+	 * conversation&#39;s locale.
+	 * 
+	 * @return locale
+	 **/
+	@ApiModelProperty(value = "Optional source language of the message (as BCP 47 language tag form including region if available). If not provided the language will be automatically detected based on the provided content. If the detection can't confidently detect the language the message will be considered to be in the conversation's locale.")
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 	public CardPostMessageData imageUrl(String imageUrl) {
@@ -331,6 +357,7 @@ public class CardPostMessageData implements PostMessageData {
 		return Objects.equals(this.$type, cardPostMessageData.$type) &&
 				Objects.equals(this.type, cardPostMessageData.type) &&
 				Objects.equals(this.fallbackText, cardPostMessageData.fallbackText) &&
+				Objects.equals(this.locale, cardPostMessageData.locale) &&
 				Objects.equals(this.imageUrl, cardPostMessageData.imageUrl) &&
 				Objects.equals(this.imageAltText, cardPostMessageData.imageAltText) &&
 				Objects.equals(this.title, cardPostMessageData.title) &&
@@ -342,7 +369,7 @@ public class CardPostMessageData implements PostMessageData {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash($type, type, fallbackText, imageUrl, imageAltText, title, body, bodyTextType, actions, quickReplies);
+		return Objects.hash($type, type, fallbackText, locale, imageUrl, imageAltText, title, body, bodyTextType, actions, quickReplies);
 	}
 
 	@Override
@@ -352,6 +379,7 @@ public class CardPostMessageData implements PostMessageData {
 		sb.append("    $type: ").append(toIndentedString($type)).append("\n");
 		sb.append("    type: ").append(toIndentedString(type)).append("\n");
 		sb.append("    fallbackText: ").append(toIndentedString(fallbackText)).append("\n");
+		sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
 		sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
 		sb.append("    imageAltText: ").append(toIndentedString(imageAltText)).append("\n");
 		sb.append("    title: ").append(toIndentedString(title)).append("\n");
